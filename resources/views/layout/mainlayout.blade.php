@@ -7,11 +7,11 @@
 @include('layout.partials.nav')
 @include('layout.partials.header')
 
-<div class="container">
 
-    @yield('content')
 
-</div>
+@yield('content')
+
+
 
 
 @include('layout.partials.footer')
