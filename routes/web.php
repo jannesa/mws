@@ -28,4 +28,4 @@ Route::get('guests', function (){
 });
 
 //UseController on Site guests
-Route::post('guests', 'EventController@guests');
+Route::post('guests', 'EventController@store');
