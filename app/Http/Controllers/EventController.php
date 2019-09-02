@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use http\Client\Curl\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
-use DB;
+use App\SongWuensche;
+use Illuminate\Support\Facades\Input;
+use Symfony\Component\Console\Tests\Input\InputTest;
 
 class EventController extends Controller
 {
@@ -20,7 +23,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        return view('guests');
     }
 
     /**
@@ -30,7 +33,6 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -42,17 +44,25 @@ class EventController extends Controller
     public function store(Request $request)
     {
 
-        //Song requesten und in Datenbank laden
-        $inputSongname = $request->input('inputSongname');
-        $inputInterpret = $request->input('inputInterpret');
+        //dd($request->all());
 
-        $data = array('song_titel' =>$inputSongname,"song_interpret" =>$inputInterpret);
+        $songtitel = $request['song_titel'];
+        $songinterpret= $request['song_interpret'];
 
-        DB::table('song_wuensche')->insert($data);
+        $SongWunsch = new SongWuensche();
 
-        echo "Success";
+        $SongWunsch->song_titel = $songtitel;
+        $SongWunsch->song_interpret    = $songinterpret;
+        $SongWunsch->save();
 
-        //
+/*
+        $Songwunsch ->song_titel = Input::get('song_titel');
+        $Songwunsch->song_titel = Input::get('song_interpret');
+
+        $Songwunsch->save();*/
+        //return redirect()->route('guests')->with('success', 'Data Added');
+
+
     }
 
     /**

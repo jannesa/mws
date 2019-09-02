@@ -18,8 +18,8 @@
             <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}" title="Dashboard">
                 <a class="nav-link" href="{!! url('dashboard') !!}">&nbsp;Dashboard</a>
             </li>
-            <li class="nav-item {{ Request::is('guests') ? 'active' : '' }}" title="Guests">
-                <a class="nav-link" href="{!! url('guests') !!}">&nbsp;Guests</a>
+            <li class="nav-item {{ Request::is('guest') ? 'active' : '' }}" title="Guest">
+                <a class="nav-link" href="{!! url('guest') !!}">&nbsp;Guest</a>
             </li>
 
             <li class="nav-item dropdown">

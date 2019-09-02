@@ -12,6 +12,8 @@ class SongWuensche extends Model
     protected $keyType = 'string';
     protected $primaryKey = ['song_titel', 'song_interpret','event_id'];
 
+    public $timestamps = false;
+
 
 
     // Songwunsch gehört zu einem Event

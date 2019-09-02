@@ -23,9 +23,6 @@ Route::get('dashboard', function (){
     return view ('dashboard');
 });
 
-Route::get('guests', function (){
-    return view ('guests');
-});
-
 //UseController on Site guests
-Route::post('guests', 'EventController@store');
+Route::get('guest', 'EventController@index');
+Route::post('store', 'EventController@store');
