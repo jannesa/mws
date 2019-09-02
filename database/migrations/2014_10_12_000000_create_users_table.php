@@ -22,9 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-           // $table->integer('abo_id');
-
-            //$table->foreign('abo_id')->references('abo_id')->on('abo')->onDelete('cascade');
 
         });
     }
