@@ -27,7 +27,7 @@ class UserModel extends Model
     // ein User kann mehrere Events haben
     public function event(){
 
-        $this->hasMany('App\Events');
+        $this->hasMany('App\Event');
 
     }
 

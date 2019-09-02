@@ -23,7 +23,7 @@ class Event extends Model
 
     public function user() {
 
-        return $this->belongsTo('App\User', 'user_email');
+        return $this->belongsTo('App\UserModel', 'user_email');
 
     }
 
