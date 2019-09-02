@@ -21,13 +21,13 @@ class CreateTableSongWuensche extends Migration
             $table->boolean('gespielt');
             $table->integer('event_id')->unsigned();
 
-            $table->primary(array('song_titel', 'song_interpret'));
+            $table->primary(array('song_titel', 'song_interpret', 'event_id'));
 
 
         });
 
         Schema::table('song_wuensche', function($table) {
-            $table->foreign('event_id')->references('id')->on('event')->onDelete('cascade');
+            $table->foreign('event_id')->references('event_id')->on('event')->onDelete('cascade');
         });
     }
 
