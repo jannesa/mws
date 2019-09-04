@@ -11,7 +11,6 @@ class SongWuensche extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     protected $primaryKey = ['song_titel', 'song_interpret','event_id'];
-    protected $fillable = ['ranking'];
 
     public $timestamps = false;
 
