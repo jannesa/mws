@@ -19,6 +19,12 @@
                 <a class="nav-link" href="{!! url('dashboard') !!}">&nbsp;Dashboard</a>
             </li>
 
+            <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}" title="Dashboard">
+                <a class="nav-link" href="{{ route('admin.register.get') }}">Adminregistrierung</a>
+            </li>
+
+
+
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

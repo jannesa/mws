@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard = 'users';
+
     //
     // Hinweis: das hier ist das Model für die Authentifizierung! nicht verwechseln mit dem user Model für die Datenbank
     //

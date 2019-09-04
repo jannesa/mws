@@ -23,3 +23,17 @@ Route::get('dashboard', function (){
     return view ('dashboard');
 });
 
+//UseController on Site guests
+Route::get('guest', 'EventController@index');
+Route::post('store', 'EventController@addSong');
+
+
+Auth::routes();
+
+Route::get('/home', 'UserHomeController@index')->name('home');
+Route::get('/admin/home', 'AdminHomeController@index')->name('admin.home');
+
+Route::get('/register/', 'Auth\RegisterAdminController@showRegistrationForm')
+    ->name('admin.register.get');
+Route::post('/register/', 'Auth\RegisterAdminController@register')
+    ->name('admin.register.post');

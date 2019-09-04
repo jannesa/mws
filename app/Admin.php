@@ -9,6 +9,8 @@ class Admin extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard = 'admin';
+
 
     // das hier ist das Admin Auth Model -> brauchen wir nachher für den login und Email Verifizierung etc
 
