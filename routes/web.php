@@ -25,4 +25,4 @@ Route::get('dashboard', function (){
 
 //UseController on Site guests
 Route::get('guest', 'EventController@index');
-Route::post('store', 'EventController@store');
+Route::post('store', 'EventController@addSong');
