@@ -23,3 +23,11 @@ Route::get('dashboard', function (){
     return view ('dashboard');
 });
 
+Route::get('events', function (){
+    return view ('events');
+});
+
+Route::get('events_erstellen', function (){
+    return view ('events_erstellen');
+});
+
