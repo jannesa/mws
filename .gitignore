@@ -8,8 +8,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/php.xml
-/.idea/vcs.xml
+/.idea/*
 .env
