@@ -22,6 +22,11 @@
             </li>
 
 
+            <li class="nav-item {{ Request::is('/logout/') ? 'active' : '' }}" title="logout">
+                <a class="nav-link" href="{{ route('user.logout') }}">&nbsp;Logout</a>
+            </li>
+
+
             {{--<li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}" title="Dashboard">
                 <a class="nav-link" href="{{ route('admin.register.get') }}">Adminregistrierung</a>
             </li>--}}

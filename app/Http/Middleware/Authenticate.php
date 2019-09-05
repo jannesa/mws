@@ -38,10 +38,10 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (!$request->expectsJson()) {
-            if (array_first($this->guards) === 'business_user') {
-                return route('user.login');
+            if (array_first($this->guards) === 'user') {
+                return route('user.auth.login');
             }
-            return route('login');
+            return route('user.auth.login');
         }
     }
 }

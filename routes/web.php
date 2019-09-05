@@ -40,6 +40,8 @@ Route::get('/auth/login/', 'Auth\LoginUserController@showLoginForm')->name('user
 
 Route::post('/auth/login/', 'Auth\LoginUserController@login')->name('user.login.submit');
 
+Route::get('/logout', 'Auth\LoginUserController@logout')->name('user.logout');
+
 
 
 # Route::get('/admin/home', 'AdminHomeController@index')->name('admin.home');
