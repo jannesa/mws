@@ -8,7 +8,9 @@
             <h1 class="jumbotron-heading text-light">Willkommen beim MusikWunschSystem</h1>
             <p class="lead text-light">Musikwünsche in Echtzeit für Ihre Party! Ihre Gäste entscheiden was gespielt wird!</p>
             <p>
-                <a class="btn btn-primary" href="{!! url('login') !!}">&nbsp;zum Login</a>
+
+                <a class="btn btn-primary" href="{{ route('user.auth.login') }}">&nbsp;Login</a>
+
                 <a href="#" class="btn btn-secondary">sonstige aktion</a>
             </p>
         </div>

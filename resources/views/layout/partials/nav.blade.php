@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">MWS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -8,34 +9,36 @@
         <ul class="navbar-nav mr-auto">
 
 
-            <li class="nav-item {{ Request::is('/') ? 'active' : '' }}" title="Start">
-                <a class="nav-link" href="{!! url('') !!}">&nbsp;Start</a>
+
+            @if( Auth::guard('user')->check())
+
+            <li class="nav-item {{ Request::is('user.dashboard') ? 'active' : '' }}" title="Dashboard">
+                <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
             </li>
 
-            <li class="nav-item {{ Request::is('login') ? 'active' : '' }}" title="Login">
-                <a class="nav-link" href="{!! url('login') !!}">&nbsp;Login</a>
-            </li>
+            @else
 
 
-            <li class="nav-item {{ Request::is('/auth/register/') ? 'active' : '' }}" title="register">
-                <a class="nav-link" href="{{ route('user.auth.register') }}">&nbsp;Register</a>
-            </li>
+                <li class="nav-item {{ Request::is('/') ? 'active' : '' }}" title="Start">
+                    <a class="nav-link" href="{!! url('') !!}">&nbsp;Start</a>
+                </li>
+
+                <li class="nav-item {{ Request::is('login') ? 'active' : '' }}" title="Login">
+                    <a class="nav-link" href="{!! url('login') !!}">&nbsp;Login</a>
+                </li>
 
 
-            <li class="nav-item {{ Request::is('/logout/') ? 'active' : '' }}" title="logout">
-                <a class="nav-link" href="{{ route('user.logout') }}">&nbsp;Logout</a>
-            </li>
+                <li class="nav-item {{ Request::is('/auth/register/') ? 'active' : '' }}" title="register">
+                    <a class="nav-link" href="{{ route('user.auth.register') }}">&nbsp;Register</a>
+                </li>
 
-
-            {{--<li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}" title="Dashboard">
-                <a class="nav-link" href="{{ route('admin.register.get') }}">Adminregistrierung</a>
-            </li>--}}
+            @endif
 
 
 
-            </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
                     Dropdown
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -46,9 +49,24 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <span class="navbar-text">
+         @if( Auth::guard('user')->check())
+                <li class="nav-item list-unstyled">
+                    Eingeloggt als {{ Auth::user()->vorname }} &nbsp; |
+                </li>
+        </span>
+        <ul class="navbar-nav">
+        <li class="nav-item {{ Request::is('/logout/') ? 'active' : '' }}" title="logout">
+            <a class="nav-link" href="{{ route('user.logout') }}">&nbsp;Logout</a>
+        </li>
+        </ul>
+        @else
+
+        @endif
+
+       {{-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        </form>--}}
     </div>
 </nav>
