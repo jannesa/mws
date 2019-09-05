@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Auth\Traits\AuthenticateUser;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class LoginController extends Controller
+class LoginUserController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Login Controller
+    | Login Business User Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles authenticating users for the application and
@@ -18,14 +18,14 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticateUser;
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/auth/user-dashboard';
 
     /**
      * Create a new controller instance.
@@ -34,6 +34,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:user')->except('logout');
     }
 }

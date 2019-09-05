@@ -15,13 +15,16 @@
             <li class="nav-item {{ Request::is('login') ? 'active' : '' }}" title="Login">
                 <a class="nav-link" href="{!! url('login') !!}">&nbsp;Login</a>
             </li>
-            <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}" title="Dashboard">
-                <a class="nav-link" href="{!! url('dashboard') !!}">&nbsp;Dashboard</a>
+
+
+            <li class="nav-item {{ Request::is('/auth/register/') ? 'active' : '' }}" title="register">
+                <a class="nav-link" href="{{ route('user.auth.register') }}">&nbsp;Register</a>
             </li>
 
-            <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}" title="Dashboard">
+
+            {{--<li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}" title="Dashboard">
                 <a class="nav-link" href="{{ route('admin.register.get') }}">Adminregistrierung</a>
-            </li>
+            </li>--}}
 
 
 
