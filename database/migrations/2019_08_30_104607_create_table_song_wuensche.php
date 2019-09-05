@@ -19,7 +19,7 @@ class CreateTableSongWuensche extends Migration
             $table->integer('ranking')->default(1);
             $table->timestamp('uhrzeit')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->boolean('gespielt')->default(false);
-            $table->integer('event_id')->default(1);
+            $table->integer('event_id')->unsigned()->default(1);
 
             $table->primary(array('song_titel', 'song_interpret', 'event_id'));
 
