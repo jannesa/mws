@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
                 'vorname' => 'Paul',
                 'nachname' => 'Test',
                 'email' => 'paul@test.de',
-                'password' => Hash::make('insecure')
+                'password' => bcrypt('test1234')
             ]);
         }
     }

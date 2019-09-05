@@ -4,6 +4,12 @@
 
 @section('content')
     <div class="container">
+        @if( Auth::guard('user')->check())
+            Eingeloggt:
+
+            {{{ Auth::user()->vorname }}}
+
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
