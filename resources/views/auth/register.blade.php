@@ -3,8 +3,11 @@
 @section('title', 'User Registrierung')
 
 @section('content')
+
+    @auth('admin')
+
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5 mb-5">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">User Registrierung</div>
@@ -95,4 +98,22 @@
             </div>
         </div>
     </div>
+
+    @endauth
+
+    @guest('admin')
+
+        <div class="container mt-5 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">nicht authorisiert!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    @endguest
+
+
 @endsection
