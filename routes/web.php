@@ -28,26 +28,29 @@ Route::get('guest', 'EventController@index');
 Route::post('store', 'EventController@addSong');
 
 
+# routes für die registrierung und login eines users
 
 
-Route::get('/auth/user-dashboard', 'UserHomeController@index')->name('user.dashboard');
 
 Route::get('/auth/register/', 'Auth\RegisterUserController@showRegistrationForm')->name('user.auth.register');
-
 Route::post('/auth/register/', 'Auth\RegisterUserController@register')->name('user.register.post');
 
 Route::get('/auth/login/', 'Auth\LoginUserController@showLoginForm')->name('user.auth.login');
-
 Route::post('/auth/login/', 'Auth\LoginUserController@login')->name('user.login.submit');
 
 Route::get('/logout', 'Auth\LoginUserController@logout')->name('user.logout');
 
+Route::get('/auth/user-dashboard', 'UserHomeController@index')->name('user.dashboard');
+
+# das gleiche für admins
 
 
-# Route::get('/admin/home', 'AdminHomeController@index')->name('admin.home');
+Route::get('/auth/admin-register', 'Auth\RegisterAdminController@showRegistrationForm')->name('admin.register.get');
+Route::post('/auth/admin-register', 'Auth\RegisterAdminController@register')->name('admin.register.post');
 
-# Route::get('/register/', 'Auth\RegisterAdminController@showRegistrationForm')
-#    ->name('admin.register.get');
+Route::get('/auth/admin-login', 'Auth\LoginAdminController@showLoginForm')->name('admin.auth.login');
+Route::post('/auth/admin-login', 'Auth\LoginAdminController@login')->name('admin.login.submit');
 
-# Route::post('/register/', 'Auth\RegisterAdminController@register')
-#    ->name('admin.register.post');
+Route::get('/admin-logout', 'Auth\LoginAdminController@logout')->name('admin.logout');
+
+Route::get('/auth/admin-dashboard', 'AdminHomeController@index')->name('admin.dashboard');

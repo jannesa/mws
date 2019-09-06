@@ -19,7 +19,7 @@ class RegisterAdminController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/home';
+    protected $redirectTo = '/auth/admin-login';
 
     /**
      * Create a new controller instance.
@@ -38,7 +38,7 @@ class RegisterAdminController extends Controller
      */
     protected function showRegistrationForm()
     {
-        return view('admin.auth.register');
+        return view('/auth/admin-register');
     }
 
     /**
@@ -50,7 +50,6 @@ class RegisterAdminController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'admin_id' => 'required|string|max:255',
             'vorname' => 'required|string|max:255',
             'nachname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -67,7 +66,6 @@ class RegisterAdminController extends Controller
     protected function create(array $data)
     {
         return Admin::create([
-            'admin_id' => $data['admin_id'],
             'vorname' => $data['vorname'],
             'nachname' => $data['nachname'],
             'email' => $data['email'],

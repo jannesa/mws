@@ -16,27 +16,41 @@
                 <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
             </li>
 
-            @else
+            @elseif (Auth::guard('admin')->check())
 
+                <li class="nav-item {{ Request::is('admin.dashboard') ? 'active' : '' }}" title="Admin Dashboard">
+                    <a class="nav-link" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                </li>
+
+            @else
 
                 <li class="nav-item {{ Request::is('/') ? 'active' : '' }}" title="Start">
                     <a class="nav-link" href="{!! url('') !!}">&nbsp;Start</a>
                 </li>
 
-                <li class="nav-item {{ Request::is('login') ? 'active' : '' }}" title="Login">
-                    <a class="nav-link" href="{!! url('login') !!}">&nbsp;Login</a>
+
+
+                <li class="nav-item {{ Request::is('/auth/user-login') ? 'active' : '' }}" title="Login">
+                    <a class="nav-link" href="{{route('user.auth.login') }}">&nbsp;Login</a>
+                </li>
+
+                <li class="nav-item {{ Request::is('/auth/admin-login') ? 'active' : '' }}" title="Admin-Login">
+                    <a class="nav-link" href="{{ route('admin.auth.login') }}">&nbsp;Admin-Login</a>
                 </li>
 
 
+
                 <li class="nav-item {{ Request::is('/auth/register/') ? 'active' : '' }}" title="register">
-                    <a class="nav-link" href="{{ route('user.auth.register') }}">&nbsp;Register</a>
+                    <a class="nav-link" href="{{ route('user.auth.register') }}">&nbsp;Registrierung</a>
+                </li>
+
+                <li class="nav-item {{ Request::is('/auth/admin-register/') ? 'active' : '' }}" title="register">
+                    <a class="nav-link" href="{{ route('admin.register.get') }}">&nbsp;Admin-Registrierung</a>
                 </li>
 
             @endif
 
-
-
-            <li class="nav-item dropdown">
+           {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Dropdown
@@ -47,20 +61,35 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-            </li>
+            </li>--}}
         </ul>
         <span class="navbar-text">
+            {{--{{dd(auth()->user())}}--}}
+
          @if( Auth::guard('user')->check())
-                <li class="nav-item list-unstyled">
-                    Eingeloggt als {{ Auth::user()->vorname }} &nbsp; |
-                </li>
+          <li class="nav-item list-unstyled">
+              Eingeloggt als {{ auth()->user()->vorname }} &nbsp; |
+          </li>
         </span>
         <ul class="navbar-nav">
         <li class="nav-item {{ Request::is('/logout/') ? 'active' : '' }}" title="logout">
             <a class="nav-link" href="{{ route('user.logout') }}">&nbsp;Logout</a>
         </li>
         </ul>
-        @else
+        @elseif(Auth::guard('admin')->check())
+            <li class="nav-item list-unstyled">
+                Eingeloggt als Admin {{ Auth::user()->vorname }} &nbsp; |
+            </li>
+            </span>
+            <ul class="navbar-nav">
+                <li class="nav-item {{ Request::is('/admin-logout/') ? 'active' : '' }}" title="logout">
+                    <a class="nav-link" href="{{ route('admin.logout') }}">&nbsp;Logout</a>
+                </li>
+            </ul>
+            @else
+            <li class="nav-item list-unstyled">
+                nicht eingeloggt
+            </li>
 
         @endif
 
