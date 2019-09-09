@@ -23,6 +23,13 @@ Route::get('dashboard', function (){
     return view ('dashboard');
 });
 
+Route::get('events', function (){
+    return view ('events');
+});
+
+Route::get('events_erstellen', 'EventController@blubb');
+Route::post('speichern', 'EventController@addEvent');
+
 //UseController on Site guests
 Route::get('guest', 'EventController@index');
 Route::post('store', 'EventController@addSong');

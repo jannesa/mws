@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\SongWuensche;
+use App\Event;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Symfony\Component\Console\Tests\Input\InputTest;
@@ -24,6 +25,16 @@ class EventController extends Controller
     public function index()
     {
         return view('guests');
+
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function blubb(){
+        return view('events_erstellen');
     }
 
     /**
@@ -122,6 +133,42 @@ class EventController extends Controller
         }
 
         return view('guests');
+
+
+    }
+
+    public function addEvent(Request $request)
+    {
+        $Event = new Event();
+
+        $event_titel = $request['inputTitel'];
+        $event_beschreibung= $request['inputBeschreibung'];
+        $event_user_email= $request['inputEmail'];
+
+        if($request['spamfilter']){
+            $event_spamfilter = '1';
+        }else{
+            $event_spamfilter = '0';
+        }
+
+        if($request['status']){
+            $event_status = 'aktive';
+        }else{
+            $event_status = 'inaktive';
+
+        }
+
+        $Event->titel = $event_titel;
+        $Event->beschreibung = $event_beschreibung;
+        $Event->user_email = $event_user_email;
+        $Event->spamfilter = $event_spamfilter;
+        $Event->status = $event_status;
+
+
+
+        $Event->save();
+
+        return view('events');
 
 
     }
