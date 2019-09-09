@@ -2,7 +2,6 @@
 
 namespace App;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
@@ -10,13 +9,15 @@ class Admin extends Authenticatable
     use Notifiable;
 
 
-    // das hier ist das Admin Auth Model -> brauchen wir nachher für den login und Email Verifizierung etc
 
-    protected $table = 'admin';
+    protected $guard = 'admin';
+
+
+    #protected $table = 'admins';
 
 
     protected $fillable = [
-        'admin_id', 'vorname','nachname', 'email', 'password',
+        'id', 'vorname','nachname', 'email', 'password',
     ];
 
 

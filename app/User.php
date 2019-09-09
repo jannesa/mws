@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard = 'users';
+
     //
     // Hinweis: das hier ist das Model für die Authentifizierung! nicht verwechseln mit dem user Model für die Datenbank
     //
@@ -27,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'vorname','nachname', 'email', 'password',
+        'id','vorname','nachname', 'email', 'password',
     ];
 
     /**

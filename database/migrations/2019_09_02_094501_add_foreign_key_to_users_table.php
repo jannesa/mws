@@ -14,7 +14,7 @@ class AddForeignKeyToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('abo_id')->unsigned();
+            $table->integer('abo_id')->unsigned()->nullable()->default(null);
             $table->foreign('abo_id')->references('abo_id')->on('abo')->onDelete('cascade');
         });
     }
