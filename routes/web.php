@@ -24,18 +24,15 @@ Route::get('dashboard', function (){
 });
 
 //Events erstellen
-Route::get('events', function (){
-    return view ('events');
-});
-
-Route::get('events_erstellen', 'EventController@blubb');
+Route::get('events', 'EventController@showAllEvents');
+Route::get('events_erstellen', 'EventController@openEventsPage');
 Route::post('speichern', 'EventController@addEvent');
 
-//UseController on Site guests
+//Guests
 Route::get('guest', 'EventController@index');
 Route::post('store', 'EventController@addSong');
 
-# routes für die registrierung und login eines users
+//User authentication
 Route::get('/auth/register/', 'Auth\RegisterUserController@showRegistrationForm')->name('user.auth.register');
 Route::post('/auth/register/', 'Auth\RegisterUserController@register')->name('user.register.post');
 
@@ -46,9 +43,7 @@ Route::get('/logout', 'Auth\LoginUserController@logout')->name('user.logout');
 
 Route::get('/auth/user-dashboard', 'UserHomeController@index')->name('user.dashboard');
 
-# das gleiche für admins
-
-
+//Admin authetication
 Route::get('/auth/admin-register', 'Auth\RegisterAdminController@showRegistrationForm')->name('admin.register.get');
 Route::post('/auth/admin-register', 'Auth\RegisterAdminController@register')->name('admin.register.post');
 

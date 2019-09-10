@@ -29,15 +29,6 @@ class EventController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function blubb(){
-        return view('events_erstellen');
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -137,6 +128,16 @@ class EventController extends Controller
 
     }
 
+
+    //funktionenzum erstenn, bearbeiten und co von events
+    public function openEventsPage(){
+        return view('events_erstellen');
+    }
+
+    public function showAllEvents(){
+        return view('events');
+    }
+
     public function addEvent(Request $request)
     {
         $Event = new Event();
@@ -157,6 +158,10 @@ class EventController extends Controller
             $event_status = 'inaktive';
 
         }
+
+        $users = auth()->user();
+
+        $event_user_email = $users->getAuthIdentifierName();
 
         $Event->titel = $event_titel;
         $Event->beschreibung = $event_beschreibung;
