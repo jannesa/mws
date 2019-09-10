@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\SongWuensche;
 use App\Event;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Symfony\Component\Console\Tests\Input\InputTest;
@@ -159,13 +160,11 @@ class EventController extends Controller
 
         }
 
-        $users = auth()->user();
-
-        $event_user_email = $users->getAuthIdentifierName();
+        $user = Auth::user();
 
         $Event->titel = $event_titel;
         $Event->beschreibung = $event_beschreibung;
-        $Event->user_email = $event_user_email;
+        $Event->user_email = $user->email;
         $Event->spamfilter = $event_spamfilter;
         $Event->status = $event_status;
 
