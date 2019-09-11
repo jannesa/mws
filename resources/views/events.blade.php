@@ -12,9 +12,8 @@
                 <div class="container">
                     <a class="btn btn-primary" href="{!! url('events_erstellen') !!}">&nbsp;Event erstellen</a>
 
-                @if(count($events)>0)
-                        {{count($events)}}
 
+                @if(count($events)>0)
                     @foreach($events as $event )
 
                         <ul class="list-group">
@@ -33,6 +32,8 @@
                             </form>
                         </ul>
                     @endforeach
+                 @else
+                    <div>Sie haben noch keine Events erstellt</div>
                  @endif
                 </div>
             </div>
