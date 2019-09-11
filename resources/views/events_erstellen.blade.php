@@ -20,10 +20,6 @@
                                 <input type="text" name="inputBeschreibung" class="form-control" placeholder="Infos" required autofocus>
                                 <label for="inputTitel">Event infos</label>
                             </div>
-                           {{-- <div class="form-label-group">
-                                <input type="email" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                                <label for="inputEmail">Email address</label>
-                            </div>--}}
 
                             <div class="form-label-group">
                                 <input type="checkbox" name="status" value="aktive"> Event aktive

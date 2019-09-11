@@ -140,7 +140,10 @@ class EventController extends Controller
     }
 
     public function showAllEvents(){
-        $events = Event::all();
+        $user = Auth::user();
+
+        $events = Event::where('user_email',$user->email);
+
         return view('events')->with('events', $events);
     }
 
@@ -150,7 +153,6 @@ class EventController extends Controller
 
         $event_titel = $request['inputTitel'];
         $event_beschreibung= $request['inputBeschreibung'];
-        //$event_user_email= $request['inputEmail'];
 
         if($request['spamfilter']){
             $event_spamfilter = '1';
@@ -165,16 +167,18 @@ class EventController extends Controller
         }
 
         $user = Auth::user();
+        $email = $user->email;
 
         $Event->titel = $event_titel;
         $Event->beschreibung = $event_beschreibung;
-        $Event->user_email = $user->email;
+        $Event->user_email = $email;
         $Event->spamfilter = $event_spamfilter;
         $Event->status = $event_status;
 
         $Event->save();
 
-        $events = Event::all();
+        $events = Event::where('user_email',$email);
+
         return view('events')->with('events', $events);
     }
 
