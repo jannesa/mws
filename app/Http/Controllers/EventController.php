@@ -129,13 +129,14 @@ class EventController extends Controller
     }
 
 
-    //funktionenzum erstenn, bearbeiten und co von events
+    //funktionen zum erstellen, bearbeiten und co von events
     public function openEventsPage(){
         return view('events_erstellen');
     }
 
     public function showAllEvents(){
-        return view('events');
+        $events = Event::all();
+        return view('events')->with('events', $events);
     }
 
     public function addEvent(Request $request)
@@ -156,12 +157,10 @@ class EventController extends Controller
             $event_status = 'aktive';
         }else{
             $event_status = 'inaktive';
-
         }
 
         $users = auth()->user();
-
-        $event_user_email = $users->getAuthIdentifierName();
+        //$event_user_email = $users->email;
 
         $Event->titel = $event_titel;
         $Event->beschreibung = $event_beschreibung;
@@ -169,12 +168,13 @@ class EventController extends Controller
         $Event->spamfilter = $event_spamfilter;
         $Event->status = $event_status;
 
-
-
         $Event->save();
 
-        return view('events');
+        $events = Event::all();
+        return view('events')->with('events', $events);
+    }
 
-
+    public function editEvent(Request $request){
+        return view('event_bearbeiten') ->with('event', $request['event']);
     }
 }

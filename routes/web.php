@@ -23,10 +23,11 @@ Route::get('dashboard', function (){
     return view ('dashboard');
 });
 
-//Events erstellen
+//Events
 Route::get('events', 'EventController@showAllEvents');
 Route::get('events_erstellen', 'EventController@openEventsPage');
 Route::post('speichern', 'EventController@addEvent');
+Route::post('event_bearbeiten', 'EventController@editEvent');
 
 //Guests
 Route::get('guest', 'EventController@index');
