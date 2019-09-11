@@ -35,7 +35,7 @@ class LoginAdminController extends Controller
         // if successful redirect to their location
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             // Authentication passed...
-            return redirect()->intended('/auth/admin-dashboard  ');
+            return redirect()->intended('/auth/admin-dashboard  ')->with('success', 'Login erfolgreich!');
         }
         return redirect()->back()->withInput($request->only('email','remember'));
 
@@ -47,7 +47,7 @@ class LoginAdminController extends Controller
 
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?: redirect('/');
+        return $this->loggedOut($request) ?: redirect('/')->with('success', 'Sie sind ausgeloggt!');
     }
 
     protected function loggedOut(Request $request)
