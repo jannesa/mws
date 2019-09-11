@@ -10,6 +10,7 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Event erstellen</h5>
+
                         <form class="form-signin" method="post" action="speichern">
                             <div class="form-label-group">
                                 <input type="text" name="inputTitel" class="form-control" placeholder="Titel" required autofocus>
@@ -19,10 +20,10 @@
                                 <input type="text" name="inputBeschreibung" class="form-control" placeholder="Infos" required autofocus>
                                 <label for="inputTitel">Event infos</label>
                             </div>
-                            <div class="form-label-group">
+                           {{-- <div class="form-label-group">
                                 <input type="email" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                                 <label for="inputEmail">Email address</label>
-                            </div>
+                            </div>--}}
 
                             <div class="form-label-group">
                                 <input type="checkbox" name="status" value="aktive"> Event aktive

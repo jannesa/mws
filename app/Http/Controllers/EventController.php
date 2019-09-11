@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use http\Client\Curl\User;
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\SongWuensche;
 use App\Event;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
-use Symfony\Component\Console\Tests\Input\InputTest;
+
 
 class EventController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function __construct()
+    {
+        $this->middleware('auth:user');
+    }
 
     /**
      * Display a listing of the resource.
@@ -145,7 +150,7 @@ class EventController extends Controller
 
         $event_titel = $request['inputTitel'];
         $event_beschreibung= $request['inputBeschreibung'];
-        $event_user_email= $request['inputEmail'];
+        //$event_user_email= $request['inputEmail'];
 
         if($request['spamfilter']){
             $event_spamfilter = '1';
@@ -159,12 +164,11 @@ class EventController extends Controller
             $event_status = 'inaktive';
         }
 
-        $users = auth()->user();
-        //$event_user_email = $users->email;
+        $user = Auth::user();
 
         $Event->titel = $event_titel;
         $Event->beschreibung = $event_beschreibung;
-        $Event->user_email = $event_user_email;
+        $Event->user_email = $user->email;
         $Event->spamfilter = $event_spamfilter;
         $Event->status = $event_status;
 
