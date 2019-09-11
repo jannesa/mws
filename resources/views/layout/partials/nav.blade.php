@@ -22,10 +22,6 @@
                 </li>
 
 
-                <li class="nav-item {{ Request::is('/auth/register/') ? 'active' : '' }}" title="register">
-                    <a class="nav-link" href="{{ route('user.auth.register') }}">&nbsp;Registrierung</a>
-                </li>
-
                 <li class="nav-item {{ Request::is('/auth/admin-register/') ? 'active' : '' }}" title="register">
                     <a class="nav-link" href="{{ route('admin.register.get') }}">&nbsp;Admin-Registrierung</a>
                 </li>
@@ -34,6 +30,10 @@
 
                 <li class="nav-item {{ Request::is('/') ? 'active' : '' }}" title="Start">
                     <a class="nav-link" href="{!! url('') !!}">&nbsp;Start</a>
+                </li>
+
+                <li class="nav-item {{ Request::is('/auth/register/') ? 'active' : '' }}" title="register">
+                    <a class="nav-link" href="{{ route('user.auth.register') }}">&nbsp;Registrierung</a>
                 </li>
 
                 <li class="nav-item {{ Request::is('/auth/user-login') ? 'active' : '' }}" title="Login">
