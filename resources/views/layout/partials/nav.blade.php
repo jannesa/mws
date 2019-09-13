@@ -14,6 +14,9 @@
                 <li class="nav-item {{ Request::is('user.dashboard') ? 'active' : '' }}" title="Dashboard">
                     <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
                 </li>
+                <li class="nav-item {{ Request::is('events') ? 'active' : '' }}" title="events">
+                    <a class="nav-link" href="{!! url('events') !!}">&nbsp;Events</a>
+                </li>
 
             @elseauth('admin')
 
@@ -27,7 +30,9 @@
                 </li>
 
              @else
-
+                <li class="nav-item {{ Request::is('guest') ? 'active' : '' }}" title="Guest">
+                    <a class="nav-link" href="{!! url('guest') !!}">&nbsp;Guest</a>
+                </li>
                 <li class="nav-item {{ Request::is('/') ? 'active' : '' }}" title="Start">
                     <a class="nav-link" href="{!! url('') !!}">&nbsp;Start</a>
                 </li>
@@ -94,8 +99,6 @@
                 </li>
 
             @endauth
-
-
 
         </ul>
         {{-- <form class="form-inline my-2 my-lg-0">

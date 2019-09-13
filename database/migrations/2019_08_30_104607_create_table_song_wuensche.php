@@ -16,10 +16,10 @@ class CreateTableSongWuensche extends Migration
         Schema::create('song_wuensche', function (Blueprint $table) {
             $table->string('song_titel');
             $table->string('song_interpret');
-            $table->integer('ranking');
-            $table->timestamp('uhrzeit');
-            $table->boolean('gespielt');
-            $table->integer('event_id')->unsigned();
+            $table->integer('ranking')->default(1);
+            $table->timestamp('uhrzeit')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->boolean('gespielt')->default(false);
+            $table->integer('event_id')->unsigned()->default(1);
 
             $table->primary(array('song_titel', 'song_interpret', 'event_id'));
 

@@ -15,7 +15,7 @@ class Event extends Model
 
     public function songWuensche(){
 
-        return $this->hasMany('App\SongWuensche');
+        return $this->hasMany('App\SongWunsch');
     }
 
 
