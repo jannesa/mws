@@ -33,6 +33,7 @@ Route::post('event_bearbeiten', 'EventController@editEvent');
 Route::get('guest', 'GuestController@index');
 Route::post('store', 'GuestController@addSong');
 
+
 //User authentication
 Route::get('/auth/register/', 'Auth\RegisterUserController@showRegistrationForm')->name('user.auth.register');
 Route::post('/auth/register/', 'Auth\RegisterUserController@register')->name('user.register.post');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\SongWunsch;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -24,6 +25,10 @@ class UserHomeController extends Controller
      */
     public function index()
     {
-        return view('/auth/user-dashboard');
+
+        $songs = SongWunsch::all()->toArray();
+
+        return view('/auth/user-dashboard',['songs' => $songs]);
+        //return view('/auth/user-dashboard');
     }
 }
