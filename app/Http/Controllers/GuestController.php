@@ -29,6 +29,13 @@ class guestController extends Controller
         $SongWunsch->song_titel = $songtitel;
         $SongWunsch->song_interpret = $songinterpret;
 
+        $SongWunsch->event_id= 1;
+
+        $SongWunsch->gespielt= 0;
+
+        $SongWunsch->ranking= 0;
+
+
         $song = DB::table('song_wuensche')->where('song_titel',$songtitel)->exists();
 
         if($song){
