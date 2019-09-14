@@ -55,3 +55,6 @@ Route::post('/auth/admin-login', 'Auth\LoginAdminController@login')->name('admin
 Route::get('/admin-logout', 'Auth\LoginAdminController@logout')->name('admin.logout');
 
 Route::get('/auth/admin-dashboard', 'AdminHomeController@index')->name('admin.dashboard');
+
+
+Route::post('/auth/admin-dashboard','AdminHomeController@deleteUser')->name('admin.delete.user');

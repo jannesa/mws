@@ -11,7 +11,7 @@ class UserModel extends Model
     // ACHTUNG:
     // das ist das Datenbank-Model für die User - User.php ist für die Authentifizierung (login) -> default
 
-    protected $table = 'user';
+    protected $table = 'users';
     public $incrementing = false;
     protected $keyType = 'string';
     protected $primaryKey = 'email';
