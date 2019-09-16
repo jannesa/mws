@@ -23,7 +23,14 @@
 
                                 <li class="list-group-item-dark"> Titel: {{$event->titel}}</li>
                                 <li class="list-group-item">Status: {{$event->status}}</li>
-                                <li class="list-group-item">Spamfilter: {{$event->spamfilter}}</li>
+
+                                @if($event->spamfilter ==0)
+                                    <li class="list-group-item">Spamfilter: {{"off"}}</li>
+                                @elseif($event->spamfilter ==1)
+                                    <li class="list-group-item">Spamfilter: {{"on"}}</li>
+                                @endif
+
+
                                 <li class="list-group-item">Beschreibung: {{$event->beschreibung}}</li>
 
                                 <input type="hidden" name="_token" value=" {{ csrf_token() }}">

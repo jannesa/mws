@@ -22,11 +22,11 @@
                             </div>
 
                             <div class="form-label-group">
-                                <input type="checkbox" name="status" value="aktive"> Event aktive
+                                <input type="checkbox" name="status" value="aktiv"> Event aktiv
                             </div>
 
 
-                            <input type="checkbox" name="spamfilter" value="1">  Spamfilter
+                            <input type="checkbox" name="spamfilter" value="1">  Spamfilter aktiv
 
                             <input type="hidden" name="_token" value=" {{ csrf_token() }}">
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">erstellen</button>

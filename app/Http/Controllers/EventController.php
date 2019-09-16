@@ -34,7 +34,6 @@ class EventController extends Controller
     public function addEvent(Request $request)
     {
         $Event = new Event();
-
         $event_titel = $request['inputTitel'];
         $event_beschreibung= $request['inputBeschreibung'];
 
@@ -58,6 +57,7 @@ class EventController extends Controller
         $Event->user_email = $email;
         $Event->spamfilter = $event_spamfilter;
         $Event->status = $event_status;
+        $Event->event_hash = str_random(10);
 
         $Event->save();
 
@@ -69,4 +69,5 @@ class EventController extends Controller
     public function editEvent(Request $request){
         return view('event_bearbeiten') ->with('event', $request['event']);
     }
+
 }
