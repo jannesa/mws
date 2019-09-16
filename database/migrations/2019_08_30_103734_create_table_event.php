@@ -26,7 +26,7 @@ class CreateTableEvent extends Migration
             $table->string('beschreibung');
             $table->boolean('spamfilter');
             $table->string('user_email');
-            $table->string('event_hash')->unique();
+            $table->string('event_hash')->unique()->nullable();
 
             $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade');
 
