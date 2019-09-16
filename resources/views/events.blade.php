@@ -32,7 +32,7 @@
 
                                 <li class="list-group-item">Beschreibung: {{$event->beschreibung}}</li>
 
-                                <li class="list-group-item">Event-Link: {{"http://127.0.0.1:8000/".$event->event_hash}}</li>
+                                <li class="list-group-item">Event-Link: {{"http://127.0.0.1:8000/guest/".$event->event_hash}}</li>
 
                                 <input type="hidden" name="_token" value=" {{ csrf_token() }}">
                                 <button class="btn btn-lg btn-secondary btn-block"  type="submit">Bearbeiten</button>

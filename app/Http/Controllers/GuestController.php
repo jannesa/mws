@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\SongWunsch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class guestController extends Controller
@@ -13,27 +15,35 @@ class guestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($link_hash)
     {
-        return view('guests');
 
+        $event_daten = DB::table('event')->where('event_hash', $link_hash)->first();
+
+
+        return view('guests')->with('event_daten', $event_daten);
     }
 
-    public function addSong(Request $request)
+
+
+    public function addSong(Request $request,$link_hash)
     {
         $SongWunsch = new SongWunsch();
 
         $songtitel = $request['song_titel'];
         $songinterpret = $request['song_interpret'];
+        $eventid = $request['event_id'];
+        $eventhash = $request['event_hash'];
 
         $SongWunsch->song_titel = $songtitel;
         $SongWunsch->song_interpret = $songinterpret;
 
-        $SongWunsch->event_id= 1;
+        $SongWunsch->event_id= $eventid;
 
         $SongWunsch->gespielt= 0;
 
         $SongWunsch->ranking= 0;
+
 
 
         $song = DB::table('song_wuensche')->where('song_titel',$songtitel)->exists();
@@ -55,7 +65,6 @@ class guestController extends Controller
 
             $SongWunsch->save();
         }
-
-        return view('guests');
+        return redirect('guest/'.$eventhash);
     }
 }

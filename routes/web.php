@@ -30,8 +30,9 @@ Route::post('speichern', 'EventController@addEvent');
 Route::post('event_bearbeiten', 'EventController@editEvent');
 
 //Guests
-Route::get('guest', 'GuestController@index');
-Route::post('store', 'GuestController@addSong');
+Route::get('guest/{link_hash}', 'GuestController@index');
+#Route::post('store/', 'GuestController@addSong');
+Route::post('guest/{link_hash}', 'GuestController@addSong');
 
 
 //User authentication

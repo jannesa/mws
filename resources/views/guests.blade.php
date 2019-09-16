@@ -9,8 +9,10 @@
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Wünsch dir einen Song</h5>
-                        <form class="form-signin" method="post" action="store">
+                        <h5 class="card-title text-center">Wünsch dir einen Song für das Event "{{$event_daten->titel}}"</h5>
+                        <form class="form-signin" method="post" action="guest">
+
+
                             <div class="form-label-group">
                                 <input type="text" name="song_titel" class="form-control" placeholder="Titel" required autofocus>
                                 <label for="song_titel"></label>
@@ -20,6 +22,8 @@
                                 <label for="song_interpret"></label>
                             </div>
                             <input type="hidden" name="_token" value=" {{ csrf_token() }}">
+                            <input type="hidden" name="event_id" value=" {{$event_daten->event_id}}">
+                            <input type="hidden" name="event_hash" value=" {{$event_daten->event_hash}}">
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
                             <hr class="my-4">
                         </form>
