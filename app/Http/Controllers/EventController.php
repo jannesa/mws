@@ -61,12 +61,11 @@ class EventController extends Controller
 
         $Event->save();
 
-        $events = Event::where('user_email',$email)->get();
-
-        return view('events')->with('events', $events->reverse());
+        return redirect('/events');
     }
 
     public function editEvent(Request $request){
+
         return view('event_bearbeiten') ->with('event', $request['event']);
     }
 
