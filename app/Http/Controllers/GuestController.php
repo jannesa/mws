@@ -26,7 +26,7 @@ class guestController extends Controller
 
 
 
-    public function addSong(Request $request,$link_hash)
+    public function addSong(Request $request)
     {
         $SongWunsch = new SongWunsch();
 
