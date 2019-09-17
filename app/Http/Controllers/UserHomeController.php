@@ -26,9 +26,13 @@ class UserHomeController extends Controller
     public function index()
     {
 
-        $songs = SongWunsch::all()->toArray();
+        //$songs = SongWunsch::all()->get();
 
-        return view('/auth/user-dashboard',['songs' => $songs]);
-        //return view('/auth/user-dashboard');
+        $songs = SongWunsch::all()->toJson();
+
+        //dd($songs);
+
+        //return view('/auth/user-dashboard',['songs' => $songs]);
+        return view('/auth/user-dashboard')->with($songs);
     }
 }

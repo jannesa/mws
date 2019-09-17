@@ -10,7 +10,9 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Wünsch dir einen Song</h5>
-                        <form class="form-signin" method="post" action="store">
+
+                        <form class="form-signin" method="POST" action="{{ route('store.song') }}">
+
                             <div class="form-label-group">
                                 <input type="text" name="song_titel" class="form-control" placeholder="Titel" required autofocus>
                                 <label for="song_titel"></label>

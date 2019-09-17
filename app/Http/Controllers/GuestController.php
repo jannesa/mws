@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\newSong as SONG;
 use App\SongWunsch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ class guestController extends Controller
 
     public function addSong(Request $request)
     {
-        $SongWunsch = new SongWunsch();
+       /* $SongWunsch = new SongWunsch();
 
         $songtitel = $request['song_titel'];
         $songinterpret = $request['song_interpret'];
@@ -53,9 +54,39 @@ class guestController extends Controller
         }
         else{
 
-            $SongWunsch->save();
-        }
+            //dd($SongWunsch);
 
-        return view('guests');
+            $SongWunsch->save();
+        }*/
+
+
+        //$song = SongWunsch::create($request->only('song_titel', 'song_interpret'));
+
+        // fire ShoutoutAdded event if shoutout successfully added to database
+
+        $SongWunsch = SongWunsch::create([
+            'song_titel' => $request->song_titel,
+            'song_interpret' => $request->song_interpret,
+            'event_id' => 1,
+            'gespielt' => 1,
+            'ranking' => 1,
+
+        ]);
+
+        $song = SongWunsch::where('song_titel', $SongWunsch->song_titel)->first();
+        event(new SONG($song));
+
+        return response()->json(['message' => 'jow'], 201);
+
+
+        //return $song->toJson();
+
+        //$ev = event(new SONG($SongWunsch));
+
+        //dd($ev);
+
+        //return response()->json(['message' => 'jow'], 201);
+
+        //return redirect('/')->with('success', 'Wunsch eingegangen');
     }
 }

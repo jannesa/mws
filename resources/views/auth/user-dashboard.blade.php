@@ -40,7 +40,7 @@
                     <th onclick="sortTable(4)">gespielt</th>
                 </tr>
 
-                @foreach($songs as $song)
+              {{--  @foreach($songs as $song)
                     <tr>
 
                         <td>{{$song['song_titel']}}</td>
@@ -50,7 +50,17 @@
                         <td>{{$song['gespielt']}}</td>
 
                     </tr>
-                @endforeach
+                @endforeach--}}
+
+                <tr v-for="song in songs">
+
+                    <td>@{{song.song_titel}}</td>
+                    <td>@{{song.song_interpret}}</td>
+                    <td>@{{song.ranking}}</td>
+                    <td>@{{song.uhrzeit}}</td>
+                    <td>@{{song.gespielt}}</td>
+
+                </tr>
 
             </table>
         </div>
@@ -58,6 +68,48 @@
 
 
 @endsection
+
+
+
+@section('scripts')
+    <script>
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                songs: {},
+            },
+            mounted() {
+                //this.getSongs();
+                this.listen();
+            },
+            methods: {
+                getSongs() {
+                    axios.get('songtest')
+                        .then((response) => {
+                            this.songs = response.data
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                listen() {
+                    Echo.channel('song-channel')
+                        .listen('newSong', (song) => {
+                            this.songs.unshift(song);
+                        })
+                }
+            }
+        })
+
+    </script>
+@endsection
+
+
+
+
+{{--
+
 
 <script>
     function sortTable(n) {
@@ -116,3 +168,4 @@
     }
 </script>
 
+--}}

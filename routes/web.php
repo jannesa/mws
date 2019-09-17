@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('index');
 });
@@ -31,7 +32,7 @@ Route::post('event_bearbeiten', 'EventController@editEvent');
 
 //Guests
 Route::get('guest', 'GuestController@index');
-Route::post('store', 'GuestController@addSong');
+Route::post('store-song', 'GuestController@addSong')->name('store.song');
 
 
 //User authentication
@@ -58,3 +59,49 @@ Route::get('/auth/admin-dashboard', 'AdminHomeController@index')->name('admin.da
 
 
 Route::post('/auth/admin-dashboard','AdminHomeController@deleteUser')->name('admin.delete.user');
+
+
+
+// testing real time
+
+
+
+
+//use Illuminate\Support\Facades\App;
+Route::get('/songtest', function() {
+    $pusher = App::make('pusher');
+
+    $pusher->trigger( 'song-channel',
+        'newSong',
+
+        array('song_titel' => 'Preparing the Pusher', 'song_interpret' => 'meo'));
+
+    return view('index');
+});
+
+
+/*
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+class TestEvent implements ShouldBroadcast
+{
+    public $text;
+
+    public function __construct($text)
+    {
+        $this->text = $text;
+    }
+
+    public function broadcastOn()
+    {
+        return ['test-channel'];
+    }
+}
+/*/
+/*use App\Events\eventListener;
+
+Route::get('/broadcast', function() {
+    event(new eventListener('Broadcasting !'));
+
+    return view('index');
+});*/
