@@ -13,8 +13,8 @@
 
 
 
-
 @include('layout.partials.footer')
 @include('layout.partials.footer-scripts')
- </body>
+@yield('script')
+</body>
 </html>
