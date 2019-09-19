@@ -4,7 +4,7 @@
 
 @section('content')
 
-
+    <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
 
 
     <div class="container">
@@ -50,8 +50,16 @@
                             <input type="hidden" name="_token" value=" {{ csrf_token() }}">
                             <input type="hidden" name="event_id" value=" {{$event_daten->event_id}}">
                             <input type="hidden" name="event_hash" value=" {{$event_daten->event_hash}}">
+                            <input type="hidden" name="event_spam" value=" {{$event_daten->spamfilter}}">
 
                             @if($event_daten->status == 'aktive')
+
+                                    @if($event_daten->spamfilter == '1')
+                                        {!! captcha_image_html('ExampleCaptcha') !!}
+                                        <input type="text" id="CaptchaCode" name="CaptchaCode" required>
+                                    @endif
+
+
                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
                             @elseif($event_daten->status == 'inaktive')
                                <button disabled class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>

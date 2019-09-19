@@ -7,6 +7,7 @@ use App\SongWunsch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Session;
 
 class guestController extends Controller
 {
@@ -28,43 +29,69 @@ class guestController extends Controller
 
     public function addSong(Request $request)
     {
-        $SongWunsch = new SongWunsch();
-
-        $songtitel = $request['song_titel'];
-        $songinterpret = $request['song_interpret'];
-        $eventid = $request['event_id'];
-        $eventhash = $request['event_hash'];
-
-        $SongWunsch->song_titel = $songtitel;
-        $SongWunsch->song_interpret = $songinterpret;
-
-        $SongWunsch->event_id= $eventid;
-
-        $SongWunsch->gespielt= 0;
-
-        $SongWunsch->ranking= 0;
 
 
+        $spamfilter = $request['event_spam'];
+        if($spamfilter == 0){
+            $validate = true;
+        }
+        else if($spamfilter == 1){
+            // validate the user-entered Captcha code when the form is submitted
+            //QUELLE: https://captcha.com/doc/php/laravel-captcha.html
+            $code = $request->input('CaptchaCode');
+            $validate = captcha_validate($code);
+        }
+        else if($spamfilter == 2){
+            //Hier wird das Zeit-Limit-System eingebaut!
+            $validate = true;
+        }
 
-        $song = DB::table('song_wuensche')->where('song_titel',$songtitel)->exists();
 
-        if($song){
 
-            $rank = $SongWunsch::where('song_titel', $songtitel)
-                ->value('ranking');
 
-            $rank++;
 
-            error_log($rank);
+        if($validate){
+            $SongWunsch = new SongWunsch();
 
-            $SongWunsch::where('song_titel', $songtitel)
-                ->update(['ranking' => $rank]);
+            $songtitel = $request['song_titel'];
+            $songinterpret = $request['song_interpret'];
+            $eventid = $request['event_id'];
+            $eventhash = $request['event_hash'];
 
+            $SongWunsch->song_titel = $songtitel;
+            $SongWunsch->song_interpret = $songinterpret;
+            $SongWunsch->event_id= $eventid;
+            $SongWunsch->gespielt= 0;
+            $SongWunsch->ranking= 0;
+
+
+            $song = DB::table('song_wuensche')->where('song_titel',$songtitel)->exists();
+
+            if($song){
+
+                $rank = $SongWunsch::where('song_titel', $songtitel)
+                    ->value('ranking');
+
+                $rank++;
+
+                error_log($rank);
+
+                $SongWunsch::where('song_titel', $songtitel)
+                    ->update(['ranking' => $rank]);
+
+            }
+            else{
+
+                $SongWunsch->save();
+            }
+            return redirect('guest/'.$eventhash)->withErrors(['message', 'The Message']);
         }
         else{
-
-            $SongWunsch->save();
+            //return back()->withErrors(['message', 'The Message']);
+            //return back()->withErrors(['message', 'Name is required']);
+            return back();
         }
-        return redirect('guest/'.$eventhash);
+
+
     }
 }

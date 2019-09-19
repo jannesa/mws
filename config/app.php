@@ -162,6 +162,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        //For Captcha Code
+        LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
