@@ -27,7 +27,7 @@ Route::get('dashboard', function (){
 Route::get('events', 'EventController@showAllEvents');
 Route::get('events_erstellen', 'EventController@openEventsPage');
 Route::post('speichern', 'EventController@addEvent');
-Route::post('event_bearbeiten', 'EventController@editEvent');
+Route::post('event_bearbeiten', 'EventController@editEvent')->name('event.bearbeiten');
 
 //Guests
 Route::get('guest/{link_hash}', 'GuestController@index');
