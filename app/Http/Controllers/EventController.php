@@ -37,10 +37,12 @@ class EventController extends Controller
         $event_titel = $request['inputTitel'];
         $event_beschreibung= $request['inputBeschreibung'];
 
-        if($request['spamfilter']){
-            $event_spamfilter = '1';
-        }else{
+        if($request['spamfilter']== 0){
             $event_spamfilter = '0';
+        }else if($request['spamfilter']== 1){
+            $event_spamfilter = '1';
+        }else if($request['spamfilter']== 2){
+            $event_spamfilter = '2';
         }
 
         if($request['status']){

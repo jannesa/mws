@@ -22,9 +22,11 @@
                                 <li class="list-group-item">Status: {{$event->status}}</li>
 
                                 @if($event->spamfilter ==0)
-                                    <li class="list-group-item">Spamfilter: {{"off"}}</li>
+                                    <li class="list-group-item">Spamfilter: {{"Aus"}}</li>
                                 @elseif($event->spamfilter ==1)
-                                    <li class="list-group-item">Spamfilter: {{"on"}}</li>
+                                    <li class="list-group-item">Spamfilter: {{"Captcha"}}</li>
+                                @elseif($event->spamfilter ==2)
+                                    <li class="list-group-item">Spamfilter: {{"Limit"}}</li>
                                 @endif
 
 
