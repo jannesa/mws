@@ -18,7 +18,7 @@
 
                             <form method="post" action="event_bearbeiten">
 
-                                <li class="list-group-item bg-dark text-light"> Titel: {{$event->titel}}</li>
+                                <li class="list-group-item bg-dark text-light"> Event-Name: {{$event->titel}}</li>
                                 <li class="list-group-item">Status: {{$event->status}}</li>
 
                                 @if($event->spamfilter ==0)

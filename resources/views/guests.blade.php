@@ -6,6 +6,15 @@
 
     <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
 
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @elseif(session('invalidcaptcha'))
+        <div class="alert alert-danger">
+            {{ session('invalidcaptcha') }}
+        </div>
+    @endif
 
     <div class="container">
         <div class="row">
@@ -29,11 +38,11 @@
                         <form class="form-signin" method="post" action="guest">
                             @if($event_daten->status == 'aktive')
                                 <div class="form-label-group">
-                                    <input type="text" name="song_titel" class="form-control" placeholder="Titel" required autofocus>
+                                    <input type="text" name="song_titel" class="form-control" placeholder="Titel" value="{{ old('song_titel') }}" required autofocus>
                                     <label for="song_titel"></label>
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="text" name="song_interpret" class="form-control" placeholder="Interpret" required>
+                                    <input type="text" name="song_interpret" class="form-control" placeholder="Interpret" value="{{ old('song_interpret') }}" required>
                                     <label for="song_interpret"></label>
                                 </div>
                             @elseif($event_daten->status == 'inaktive')
@@ -54,11 +63,10 @@
 
                             @if($event_daten->status == 'aktive')
 
-                                    @if($event_daten->spamfilter == '1')
-                                        {!! captcha_image_html('ExampleCaptcha') !!}
-                                        <input type="text" id="CaptchaCode" name="CaptchaCode" required>
-                                    @endif
-
+                                @if($event_daten->spamfilter == '1')
+                                    {!! captcha_image_html('ExampleCaptcha') !!}
+                                    <input type="text" id="CaptchaCode" name="CaptchaCode" required>
+                                @endif
 
                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
                             @elseif($event_daten->status == 'inaktive')
