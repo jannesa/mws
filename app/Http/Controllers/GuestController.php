@@ -84,7 +84,7 @@ class guestController extends Controller
 
                 $SongWunsch->save();
             }
-            return redirect('guest/'.$eventhash)->withErrors(['message', 'The Message']);
+            return redirect('guest/'.$eventhash);
         }
         else{
             //return back()->withErrors(['message', 'The Message']);
