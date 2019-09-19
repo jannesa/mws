@@ -31,7 +31,7 @@
 
 
                             <fieldset>
-                                <input type="radio" id="spamaus" name="spamfilter" value="0">
+                                <input type="radio" id="spamaus" name="spamfilter" value="0" checked>
                                 <label for="spamaus"> Spamfilter aus</label>
                                 <br>
                                 <input type="radio" id="spamcaptcha" name="spamfilter" value="1">

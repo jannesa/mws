@@ -19,7 +19,7 @@ class CreateTableEvent extends Migration
             $table->string('status');
 
             #$table->timestamp('beginn');
-            #$table->timestamp('ende');
+            $table->timestamp('ende');
 
             $table->timestampsTz();
 
