@@ -17,10 +17,10 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    Featured
+                                   Event-Name: {{$event->titel}}
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title"> Event-Name: {{$event->titel}}</h5>
+
                                     <p class="card-text">Beschreibung: {{$event->beschreibung}}</p>
 
                                     <p class="card-text">Status: {{$event->status}}</p>
