@@ -6,16 +6,21 @@
 
     <h1>Event bearbeiten</h1>
 
-    <ul class="list-group">
-        <br>
-        <form method="post" action="event_bearbeiten">
+    <form method="post" action="{{action('EventController@update',$event_id)}}">
 
-            <input type="hidden" name="_token" value=" {{ csrf_token() }}">
-            <button class="btn btn-lg btn-primary btn-block"  type="submit">Löschen</button>
+        <input type="hidden" name="_token" value=" {{ csrf_token() }}">
 
-            <li class="list-group-item-dark"> Titel: {{$event->titel}}</li>
-            <li class="list-group-item">Status: {{$event->status}}</li>
-            <li class="list-group-item">Spamfilter: {{$event->spamfilter}}</li>
-            <li class="list-group-item">Beschreibung: {{$event->beschreibung}}</li>
-        </form>
-    </ul>
+        <div class="form-group">
+            <input type="text" name="titel" class="form-control" value="{{$event->titel}}" placeholder="Titel eingeben">
+            <label for="inputTitel">Event Titel</label>
+        </div>
+        <div class="form-group">
+            <input type="text" name="beschreibung" class="form-control" value="{{$event->beschreibung}}" placeholder="Beschreibung eingeben">
+            <label for="inputTitel">Event infos</label>
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-primary text-uppercase" type="submit" value="Edit">
+        </div>
+
+    </form>

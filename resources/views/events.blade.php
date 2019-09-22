@@ -11,30 +11,29 @@
                 <h1>Events</h1>
                 <div class="container">
                     <a class="btn btn-primary" href="{!! url('events_erstellen') !!}">&nbsp;Event erstellen</a>
+                    @if($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{$message}}</p>
+                        </div>
+                    @endif
 
+                    @if(count($events)>0)
+                        @foreach($events as $event )
 
-                @if(count($events)>0)
-                    @foreach($events as $event )
+                            <ul class="list-group">
+                                <br>
 
-                        <ul class="list-group">
-                            <br>
+                                    <li class="list-group-item-dark"> Titel: {{$event->titel}}</li>
+                                    <li class="list-group-item">Status: {{$event->status}}</li>
+                                    <li class="list-group-item">Spamfilter: {{$event->spamfilter}}</li>
+                                    <li class="list-group-item">Beschreibung: {{$event->beschreibung}}</li>
 
-                            <form method="post" action="event_bearbeiten">
-
-                                <li class="list-group-item-dark"> Titel: {{$event->titel}}</li>
-                                <li class="list-group-item">Status: {{$event->status}}</li>
-                                <li class="list-group-item">Spamfilter: {{$event->spamfilter}}</li>
-                                <li class="list-group-item">Beschreibung: {{$event->beschreibung}}</li>
-
-                                <input type="hidden" name="_token" value=" {{ csrf_token() }}">
-                                <button class="btn btn-lg btn-secondary btn-block"  type="submit">Bearbeiten</button>
-
-                            </form>
-                        </ul>
-                    @endforeach
-                 @else
-                    <div>Sie haben noch keine Events erstellt</div>
-                 @endif
+                                <a href="{{action('EventController@edit',$event['event_id'])}}" class="btn btn-secondary">Bearbeiten</a>
+                            </ul>
+                        @endforeach
+                     @else
+                        <div>Sie haben noch keine Events erstellt</div>
+                     @endif
                 </div>
             </div>
         </div>

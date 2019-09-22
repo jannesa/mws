@@ -23,7 +23,7 @@ class EventController extends Controller
         return view('events_erstellen');
     }
 
-    public function showAllEvents(){
+    public function index(){
         $user = Auth::user();
 
         $events = Event::where('user_email',$user->email)->get();
@@ -63,10 +63,26 @@ class EventController extends Controller
 
         $events = Event::where('user_email',$email)->get();
 
-        return view('events')->with('events', $events->reverse());
+        return view ('events')->with('events', $events->reverse());
     }
 
-    public function editEvent(Request $request){
-        return view('event_bearbeiten') ->with('event', $request['event']);
+    public function edit ($event_id){
+        $event = Event::find($event_id);
+       return view('event_bearbeiten', compact('event', 'event_id'));
+
+    }
+
+    public function update(Request $request, $event_id){
+        $this -> validate($request, [
+            'titel'=> 'required',
+            'beschreibung' => 'required'
+        ]);
+
+        $event = Event::find('$event_id');
+        $event -> titel= $request['titel'];
+        $event -> beschreibung= $request['beschreibung'];
+        $event -> save();
+
+        return redirect()-> route('events')->with('success', 'Daten wurden aktualisiert');
     }
 }
