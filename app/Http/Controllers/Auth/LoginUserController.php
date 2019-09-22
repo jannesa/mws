@@ -36,4 +36,6 @@ class LoginUserController extends Controller
     {
         $this->middleware('guest:user')->except('logout');
     }
+
+
 }

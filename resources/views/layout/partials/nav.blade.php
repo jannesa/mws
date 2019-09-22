@@ -10,6 +10,7 @@
 
 
             @auth('user')
+
                 <li class="nav-item {{ Request::is('user.dashboard') ? 'active' : '' }}" title="Dashboard">
                     <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
                 </li>
@@ -22,9 +23,7 @@
                 <li class="nav-item {{ Request::is('admin.dashboard') ? 'active' : '' }}" title="Admin Dashboard">
                     <a class="nav-link" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                 </li>
-                <li class="nav-item {{ Request::is('/auth/register/') ? 'active' : '' }}" title="register">
-                    <a class="nav-link" href="{{ route('user.auth.register') }}">&nbsp;Registrierung</a>
-                </li>
+
 
                 <li class="nav-item {{ Request::is('/auth/admin-register/') ? 'active' : '' }}" title="register">
                     <a class="nav-link" href="{{ route('admin.register.get') }}">&nbsp;Admin-Registrierung</a>
@@ -38,6 +37,10 @@
                     <a class="nav-link" href="{!! url('') !!}">&nbsp;Start</a>
                 </li>
 
+                <li class="nav-item {{ Request::is('/auth/register/') ? 'active' : '' }}" title="register">
+                    <a class="nav-link" href="{{ route('user.auth.register') }}">&nbsp;Registrierung</a>
+                </li>
+
                 <li class="nav-item {{ Request::is('/auth/user-login') ? 'active' : '' }}" title="Login">
                     <a class="nav-link" href="{{route('user.auth.login') }}">&nbsp;Login</a>
                 </li>
@@ -48,18 +51,18 @@
 
             @endauth
 
-                {{-- <li class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                   Dropdown
-               </a>
-               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                   <a class="dropdown-item" href="#">Action</a>
-                   <a class="dropdown-item" href="#">Another action</a>
-                   <div class="dropdown-divider"></div>
-                   <a class="dropdown-item" href="#">Something else here</a>
-               </div>
-           </li>--}}
+            {{-- <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                     Dropdown
+                 </a>
+                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                     <a class="dropdown-item" href="#">Action</a>
+                     <a class="dropdown-item" href="#">Another action</a>
+                     <div class="dropdown-divider"></div>
+                     <a class="dropdown-item" href="#">Something else here</a>
+                 </div>
+             </li>--}}
 
 
         </ul>
@@ -68,7 +71,7 @@
             @auth('user')
                 <li class="nav-item list-unstyled">
                     <a  class="nav-link text-muted">
-                        Eingeloggt als User &nbsp; |
+                    Eingeloggt als User &nbsp; |
                     </a>
                 </li>
 

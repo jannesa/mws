@@ -25,16 +25,17 @@ Route::get('dashboard', function (){
 
 //Events
 Route::get('events', 'EventController@index');
-Route::get('event_bearbeiten', 'EventController@edit');
+//Route::get('event_bearbeiten', 'EventController@edit');
 
 Route::get('events_erstellen', 'EventController@openEventsPage');
 Route::post('speichern', 'EventController@addEvent');
-
-
+Route::post('event_bearbeiten', 'EventController@editEvent');
 
 //Guests
-Route::get('guest', 'GuestController@index');
-Route::post('store', 'GuestController@addSong');
+Route::get('guest/{link_hash}', 'GuestController@index');
+#Route::post('store/', 'GuestController@addSong');
+Route::post('guest/{link_hash}', 'GuestController@addSong');
+
 
 //User authentication
 Route::get('/auth/register/', 'Auth\RegisterUserController@showRegistrationForm')->name('user.auth.register');
@@ -57,3 +58,6 @@ Route::post('/auth/admin-login', 'Auth\LoginAdminController@login')->name('admin
 Route::get('/admin-logout', 'Auth\LoginAdminController@logout')->name('admin.logout');
 
 Route::get('/auth/admin-dashboard', 'AdminHomeController@index')->name('admin.dashboard');
+
+
+Route::post('/auth/admin-dashboard','AdminHomeController@deleteUser')->name('admin.delete.user');

@@ -1,10 +1,9 @@
 <?php
 
+use App\Admin;
 use Illuminate\Database\Seeder;
 
-use App\User;
-
-class UserTableSeeder extends Seeder
+class AdminTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +13,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         /** @var Collection $administrators */
-        $user  = User::all();
+        $admin  = Admin::all();
 
-        if($user->isEmpty()) {
-            User::create([
+        if($admin->isEmpty()) {
+            Admin::create([
                 'vorname' => 'Paul',
                 'nachname' => 'Test',
-                'email' => 'paul@test.de',
-                'password' => bcrypt('jannes')
+                'email' => 'admin@mws.de',
+                'password' => bcrypt('123456')
             ]);
         }
     }

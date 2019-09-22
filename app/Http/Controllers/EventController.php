@@ -34,14 +34,15 @@ class EventController extends Controller
     public function addEvent(Request $request)
     {
         $Event = new Event();
-
         $event_titel = $request['inputTitel'];
         $event_beschreibung= $request['inputBeschreibung'];
 
-        if($request['spamfilter']){
-            $event_spamfilter = '1';
-        }else{
+        if($request['spamfilter']== 0){
             $event_spamfilter = '0';
+        }else if($request['spamfilter']== 1){
+            $event_spamfilter = '1';
+        }else if($request['spamfilter']== 2){
+            $event_spamfilter = '2';
         }
 
         if($request['status']){
@@ -58,6 +59,7 @@ class EventController extends Controller
         $Event->user_email = $email;
         $Event->spamfilter = $event_spamfilter;
         $Event->status = $event_status;
+        $Event->event_hash = str_random(10);
 
         $Event->save();
 

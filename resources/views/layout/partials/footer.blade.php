@@ -1,4 +1,4 @@
-<footer class="text-muted bg-dark pt-3 pb-2 fixed-bottom">
+<footer class="text-muted bg-dark pt-3 pb-2">
     <div class="container">
         <p class="float-right">
             <a href="#">Nach oben</a>

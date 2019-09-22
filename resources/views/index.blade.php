@@ -3,6 +3,14 @@
 @section('title', 'Startseite')
 
 @section('content')
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
     <section class="jumbotron text-center" style="background-image: url('/img/header_background.jpg');background-size: cover;background-position: bottom;">
         <div class="container">
             <h1 class="jumbotron-heading text-light">Willkommen beim MusikWunschSystem</h1>

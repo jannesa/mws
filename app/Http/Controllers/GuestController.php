@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\SongWunsch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Session;
+use Illuminate\Validation\ValidationException;
 
 class guestController extends Controller
 {
@@ -13,42 +17,76 @@ class guestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($link_hash)
     {
-        return view('guests');
+        $event_daten = DB::table('event')->where('event_hash', $link_hash)->first();
+        if($event_daten){
+            return view('guests')->with('event_daten', $event_daten);
+        }
+        else{
+            return view('guests_no_event')->with('linkhash', $link_hash);
+        }
+
 
     }
 
+
+
     public function addSong(Request $request)
     {
-        $SongWunsch = new SongWunsch();
+        //Schauen welcher Spam Filter aktiv ist oder ob keiner aktiv ist.
+        $spamfilter = $request['event_spam'];
+        if($spamfilter == 0){
+            $validate = true;
+        }
+        else if($spamfilter == 1){
+            // validate the user-entered Captcha code when the form is submitted
+            //QUELLE: https://captcha.com/doc/php/laravel-captcha.html
+            $code = $request->input('CaptchaCode');
+            $validate = captcha_validate($code);
+        }
+        else if($spamfilter == 2){
+            //Hier wird das Zeit-Limit-System eingebaut!
+            $validate = true;
+        }
 
-        $songtitel = $request['song_titel'];
-        $songinterpret = $request['song_interpret'];
 
-        $SongWunsch->song_titel = $songtitel;
-        $SongWunsch->song_interpret = $songinterpret;
+        if($validate){
+            $SongWunsch = new SongWunsch();
 
-        $song = DB::table('song_wuensche')->where('song_titel',$songtitel)->exists();
+            $songtitel = $request['song_titel'];
+            $songinterpret = $request['song_interpret'];
+            $eventid = $request['event_id'];
+            $eventhash = $request['event_hash'];
 
-        if($song){
+            $SongWunsch->song_titel = $songtitel;
+            $SongWunsch->song_interpret = $songinterpret;
+            $SongWunsch->event_id= $eventid;
+            $SongWunsch->gespielt= 0;
+            $SongWunsch->ranking= 0;
 
-            $rank = $SongWunsch::where('song_titel', $songtitel)
-                ->value('ranking');
+            $song = DB::table('song_wuensche')->where('song_titel',$songtitel)->exists();
 
-            $rank++;
+            if($song){
 
-            error_log($rank);
+                $rank = $SongWunsch::where('song_titel', $songtitel)
+                    ->value('ranking');
 
-            $SongWunsch::where('song_titel', $songtitel)
-                ->update(['ranking' => $rank]);
+                $rank++;
 
+                error_log($rank);
+
+                $SongWunsch::where('song_titel', $songtitel)
+                    ->update(['ranking' => $rank]);
+
+            }
+            else{
+                $SongWunsch->save();
+            }
+            return redirect('guest/'.$eventhash)->with('success', 'Abgabe erfolgreich!');
         }
         else{
-
-            $SongWunsch->save();
+            return redirect()->back()->withInput($request->only('song_titel','song_interpret'))->with('invalidcaptcha', 'Falscher Captcha-Code!');
         }
-
-        return view('guests');
     }
 }
