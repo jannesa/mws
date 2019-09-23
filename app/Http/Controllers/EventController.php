@@ -7,7 +7,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\Event;
+use App\SongWunsch;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class EventController extends Controller
@@ -65,10 +67,50 @@ class EventController extends Controller
 
         return redirect('/events');
     }
+    public function delete(Request $request){
+
+
+        Event::find($request['id']) -> delete();
+        return redirect('/events');
+    }
 
     public function editEvent(Request $request){
 
-        return view('event_bearbeiten') ->with('event', $request['event']);
+        if($request['spamfilter']== 0){
+            $event_spamfilter = '0';
+        }else if($request['spamfilter']== 1){
+            $event_spamfilter = '1';
+        }else if($request['spamfilter']== 2){
+            $event_spamfilter = '2';
+        }
+
+        if($request['status']){
+            $event_status = 'aktive';
+        }else{
+            $event_status = 'inaktive';
+        }
+
+        $event = Event::find($request['id']);
+        $event -> titel= $request['titel'];
+        $event -> beschreibung= $request['beschreibung'];
+        $event -> spamfilter = $event_spamfilter;
+        $event -> status = $event_status;
+
+        $event -> save();
+
+        $user = Auth::user();
+        $events = Event::where('user_email',$user->email)->get();
+
+        return redirect('events');
     }
 
+    public function showSongs($link_hash){
+        $event_daten = DB::table('event')->where('event_hash', $link_hash)->first();
+        $event_id = $event_daten -> event_id;
+
+        $songs = SongWunsch::where('event_id',$event_id)->get();
+
+        return view('/songs',['songs' => $songs]);
+
+    }
 }

@@ -33,7 +33,7 @@
                                     @endif
 
 
-                                    <a target="_blank"  class="btn btn-secondary" href="{{"guest/".$event->event_hash}}">Zum Event</a>
+                                    <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}">Zum Event</a>
 
                                     <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-primary">
                                         Link Kopieren
@@ -41,25 +41,47 @@
                                     </button>
                                     <span style="position: absolute; top: -2000px; left: -2000px;" id="Z{{$event->event_hash}}">{{url("guest/".$event->event_hash)}}</span>
 
-
                                     <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}">
                                         bearbeiten
                                     </button>
+
+                                    <form method="post" action="{{ route('event.loeschen') }}" >
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <div class="col">
+                                                <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
+                                            </div>
+                                        <button class="btn btn-secondary" type="submit">Löschen</button>
+                                    </form>
+
                                 </div>
                                 <div class="card-footer collapse" id="collapse{{$event->event_id}}">
 
-                                    <form method="post" action="{{ route('event.bearbeiten') }}">
+                                    <form method="post" action="{{ route('event.bearbeiten') }}" >
 
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <div class="form-row">
                                             <div class="col-7">
-                                                <input type="text" class="form-control" name="titel" value="{{$event->titel}}">
+                                                <input type="text" class="form-control" name="titel" value="{{$event->titel}}" required>
                                             </div>
                                             <div class="col">
-                                                <input type="text" class="form-control" name="beschreibung" value="{{$event->beschreibung}}">
+                                                <input type="text" class="form-control" name="beschreibung" value="{{$event->beschreibung}}" required>
+                                            </div>
+                                            <div class="col">
+                                                <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
                                             </div>
                                         </div>
+                                        <br>
+                                        @if($event->status == 'aktive')
+                                            <div class="form-label-group">
+                                                <input type="checkbox" name="status" value="aktiv" checked> Event aktiv
+                                            </div>
+                                        @else
+                                            <div class="form-label-group">
+                                                <input type="checkbox" name="status" value="aktiv" > Event aktiv
+                                            </div>
+                                        @endif
+                                        <br>
                                         <div class="form-row">
                                             <div class="col">
                                                 <div class="form-check">
