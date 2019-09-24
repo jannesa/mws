@@ -65,18 +65,19 @@ class guestController extends Controller
             $SongWunsch->gespielt= 0;
             $SongWunsch->ranking= 0;
 
-            $song = DB::table('song_wuensche')->where('song_titel',$songtitel)->exists();
+            $song = DB::table('song_wuensche')->where('song_titel',$songtitel )->where('song_interpret', $songinterpret)->exists();
+
 
             if($song){
 
-                $rank = $SongWunsch::where('song_titel', $songtitel)
+                $rank = $SongWunsch::where('song_titel', $songtitel)-> where('song_interpret', $songinterpret)
                     ->value('ranking');
 
                 $rank++;
 
                 error_log($rank);
 
-                $SongWunsch::where('song_titel', $songtitel)
+                $SongWunsch::where('song_titel', $songtitel)-> where('song_interpret', $songinterpret)
                     ->update(['ranking' => $rank]);
 
             }

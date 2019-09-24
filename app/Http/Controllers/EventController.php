@@ -98,9 +98,6 @@ class EventController extends Controller
 
         $event -> save();
 
-        $user = Auth::user();
-        $events = Event::where('user_email',$user->email)->get();
-
         return redirect('events');
     }
 
