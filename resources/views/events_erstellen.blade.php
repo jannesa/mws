@@ -17,7 +17,7 @@
                                 <label for="inputTitel">Event titel</label>
                             </div>
                             <div class="form-label-group">
-                                <input type="text" name="inputBeschreibung" class="form-control" placeholder="Infos" required autofocus>
+                                <input type="text" name="inputBeschreibung" class="form-control" placeholder="Infos">
                                 <label for="inputTitel">Event infos</label>
                             </div>
 
