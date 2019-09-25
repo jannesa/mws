@@ -29,7 +29,7 @@
     <div class="row">
         <div class="col-md-12">
             <br />
-            <h3 align="center">Songwünsche</h3>
+            <h3 align="center">Songwünsche für </h3>
             <br />
             <table id="myTable2" class="table table-hover table-striped table-bordered">
                 <tr>
@@ -47,7 +47,26 @@
                         <td>{{$song['song_interpret']}}</td>
                         <td>{{$song['ranking']}}</td>
                         <td>{{$song['uhrzeit']}}</td>
-                        <td>{{$song['gespielt']}}</td>
+                        <td>
+                            <form method="post" action="{{ route('song.aendern') }}" >
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="col">
+                                    <input type="hidden" class="form-control" name="titel" value="{{$song['song_titel']}}">
+                                    <input type="hidden" class="form-control" name="interpret" value="{{$song['song_interpret']}}">
+                                    <input type="hidden" class="form-control" name="eventid" value="{{$song['event_id']}}">
+                                    @if($song['gespielt'] == 0)
+                                        <input type="hidden" class="form-control" name="gespielt" value="1">
+                                    @elseif($song['gespielt'] == 1)
+                                        <input type="hidden" class="form-control" name="gespielt" value="0">
+                                    @endif
+                                </div>
+                                @if($song['gespielt'] == 0)
+                                    <button class="btn btn-secondary" type="submit">Noch nicht gespielt</button>
+                                @elseif($song['gespielt'] == 1)
+                                    <button class="btn btn-secondary" type="submit">Bereits gespielt</button>
+                                @endif
+                            </form>
+                        </td>
 
                     </tr>
                 @endforeach

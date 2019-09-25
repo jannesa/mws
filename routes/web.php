@@ -29,6 +29,7 @@ Route::get('events_erstellen', 'EventController@openEventsPage');
 Route::post('speichern', 'EventController@addEvent');
 Route::post('events_bearbeiten', 'EventController@editEvent')->name('event.bearbeiten');
 Route::post('events_loeschen', 'EventController@delete')->name('event.loeschen');
+Route::post('songs_aendern', 'EventController@editSongStatus')->name('song.aendern');
 
 Route::get('songs/{link_hash}', 'EventController@showSongs');
 
