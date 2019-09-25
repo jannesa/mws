@@ -25,9 +25,10 @@
                         @if($event_daten->status == 'aktive')
                             <h5 class="card-title text-center">Wünsch dir einen Song für das Event "{{$event_daten->titel}}"</h5>
                             <br>
-
-                            <h6 class="card-title text-left">Event-Infos: </h6>
-                            <a>{{$event_daten->beschreibung}}</a>
+                            @if($event_daten->beschreibung)
+                                <h6 class="card-title text-left">Event-Infos: </h6>
+                                <a>{{$event_daten->beschreibung}}</a>
+                            @endif
                         @elseif($event_daten->status == 'inaktive')
                                 <h5 class="card-title text-center">Das Event "{{$event_daten->titel}}" wurde vom Ersteller deaktiviert!</h5>
                         @endif

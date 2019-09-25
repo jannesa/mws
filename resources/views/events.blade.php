@@ -62,10 +62,12 @@
 
                                         <div class="form-row">
                                             <div class="col-7">
+                                                <p class="card-text">Event-Name:</p>
                                                 <input type="text" class="form-control" name="titel" value="{{$event->titel}}" required>
                                             </div>
                                             <div class="col">
-                                                <input type="text" class="form-control" name="beschreibung" value="{{$event->beschreibung}}" required>
+                                                <p class="card-text">Beschreibung: </p>
+                                                <input type="text" class="form-control" name="beschreibung" value="{{$event->beschreibung}}" >
                                             </div>
                                             <div class="col">
                                                 <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
