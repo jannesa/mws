@@ -38,6 +38,7 @@
                     <th onclick="sortTable(2)">Ranking</th>
                     <th onclick="sortTable(3)">Uhrzeit</th>
                     <th onclick="sortTable(4)">gespielt</th>
+                    <th onclick="sortTable(4)">Löschen</th>
                 </tr>
 
                 @foreach($songs as $song)
@@ -47,6 +48,7 @@
                         <td>{{$song['song_interpret']}}</td>
                         <td>{{$song['ranking']}}</td>
                         <td>{{$song['uhrzeit']}}</td>
+
                         <td>
                             <form method="post" action="{{ route('song.aendern') }}" >
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -65,6 +67,18 @@
                                 @elseif($song['gespielt'] == 1)
                                     <button class="btn btn-secondary" type="submit">Bereits gespielt</button>
                                 @endif
+                            </form>
+                        </td>
+
+                        <td>
+                            <form method="post" action="{{ route('song.loeschen') }}" >
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="col">
+                                    <input type="hidden" class="form-control" name="titel" value="{{$song['song_titel']}}">
+                                    <input type="hidden" class="form-control" name="interpret" value="{{$song['song_interpret']}}">
+                                    <input type="hidden" class="form-control" name="eventid" value="{{$song['event_id']}}">
+                                </div>
+                                <button class="btn btn-secondary" type="submit">Löschen</button>
                             </form>
                         </td>
 

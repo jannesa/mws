@@ -112,21 +112,17 @@ class EventController extends Controller
     }
 
 
-//    public function deleteSong(Request $request){
-//        //SongWunsch::find($request['song_titel'],$request['song_interpret'],$request['event_id']) -> delete();
-//        //DB::table('song_wuensche')->where('song_titel', $request['song_titel'])->delete();
-//
-//
-//        error_log('LOG:',$request->song_titel);
-//
-////        DB::table('song_wuensche')
-////            ->where('song_titel', $request->song_titel)
-////            ->delete();
-//
-//        return redirect('/events');
-//        //$songs = SongWunsch::where('event_id',$request['event_id'])->get();
-//        //return view('/songs',['songs' => $songs]);
-//    }
+    public function deleteSong(Request $request){
+        DB::table('song_wuensche')
+            ->where('song_titel', $request->titel)
+            ->where('song_interpret', $request->interpret)
+            ->where('event_id', $request->eventid)
+            ->delete();
+
+        $songs = SongWunsch::where('event_id',$request->eventid)->get();
+
+        return view('/songs',['songs' => $songs]);
+    }
 
 
 
