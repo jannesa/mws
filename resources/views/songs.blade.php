@@ -29,15 +29,26 @@
     <div class="row">
         <div class="col-md-12">
             <br />
-            <h3 align="center">Songwünsche für </h3>
+            <h3 align="center">Songwünsche</h3>
             <br />
+
+            @if(isset($songs[0]['event_id']))
+                <form method="post" action="{{ route('pdf.erstellen') }}" target="_blank">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="col">
+                        <input type="hidden" class="form-control" name="id" value="{{$songs[0]['event_id']}}">
+                    </div>
+                    <button class="btn btn-secondary" type="submit" >Als PDF exportieren</button>
+                </form>
+            @endif
+
             <table id="myTable2" class="table table-hover table-striped table-bordered">
                 <tr>
                     <th onclick="sortTable(0)">Songtitel</th>
                     <th onclick="sortTable(1)">Songinterpret</th>
                     <th onclick="sortTable(2)">Ranking</th>
                     <th onclick="sortTable(3)">Uhrzeit</th>
-                    <th onclick="sortTable(4)">gespielt</th>
+                    <th onclick="sortTable(4)">Status</th>
                     <th onclick="sortTable(4)">Löschen</th>
                 </tr>
 

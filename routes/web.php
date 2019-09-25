@@ -68,3 +68,7 @@ Route::get('/auth/admin-dashboard', 'AdminHomeController@index')->name('admin.da
 
 
 Route::post('/auth/admin-dashboard','AdminHomeController@deleteUser')->name('admin.delete.user');
+
+
+//PDF Export
+Route::post('/dynamic_pdf/pdf', 'DynamicPDFController@pdf')->name('pdf.erstellen');
