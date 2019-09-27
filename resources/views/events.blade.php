@@ -33,10 +33,10 @@
                                     @endif
 
 
-                                    <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}">Zum Event</a>
+                                    <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}">Wünsche</a>
 
                                     <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-primary">
-                                        Link Kopieren
+                                        Event-Link Kopieren
                                         <span style="display: none;" class="animation">in die Zwischenablage kopiert!</span>
                                     </button>
                                     <span style="position: absolute; top: -2000px; left: -2000px;" id="Z{{$event->event_hash}}">{{url("guest/".$event->event_hash)}}</span>

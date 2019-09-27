@@ -29,7 +29,7 @@ class DynamicPDFController extends Controller
     {
         $song_data = $this->get_song_data($eId);
         $output = '
-     <h3 align="center">Songwünsche</h3>
+     <h3 align="center">Songwünsche Export</h3>
      <table width="100%" style="border-collapse: collapse; border: 0px;">
       <tr>
     <th style="border: 1px solid; padding:12px;" width="20%">Titel</th>

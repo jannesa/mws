@@ -48,8 +48,9 @@
                     <th onclick="sortTable(1)">Songinterpret</th>
                     <th onclick="sortTable(2)">Ranking</th>
                     <th onclick="sortTable(3)">Uhrzeit</th>
-                    <th onclick="sortTable(4)">Status</th>
-                    <th onclick="sortTable(4)">Löschen</th>
+{{--                    <th onclick="sortTable(4)">Status</th>--}}
+                    <th>Status</th>
+                    <th>Löschen</th>
                 </tr>
 
                 @foreach($songs as $song)
@@ -74,9 +75,9 @@
                                     @endif
                                 </div>
                                 @if($song['gespielt'] == 0)
-                                    <button class="btn btn-secondary" type="submit">Noch nicht gespielt</button>
+                                    <button class="btn btn-warning" type="submit">Noch nicht gespielt</button>
                                 @elseif($song['gespielt'] == 1)
-                                    <button class="btn btn-secondary" type="submit">Bereits gespielt</button>
+                                    <button class="btn btn-success" type="submit">Bereits gespielt</button>
                                 @endif
                             </form>
                         </td>
@@ -89,7 +90,7 @@
                                     <input type="hidden" class="form-control" name="interpret" value="{{$song['song_interpret']}}">
                                     <input type="hidden" class="form-control" name="eventid" value="{{$song['event_id']}}">
                                 </div>
-                                <button class="btn btn-secondary" type="submit">Löschen</button>
+                                <button class="btn btn-danger" type="submit">Löschen</button>
                             </form>
                         </td>
 

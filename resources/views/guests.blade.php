@@ -71,7 +71,7 @@
 
                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
                             @elseif($event_daten->status == 'inaktive')
-                               <button disabled class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
+                               <button disabled class="btn btn-outline-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
                             @endif
 
                             <hr class="my-4">
