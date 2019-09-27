@@ -50,7 +50,7 @@
                                             <div class="col">
                                                 <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
                                             </div>
-                                        <button class="btn btn-secondary" type="submit">Löschen</button>
+                                        <button class="btn btn-danger" type="submit">Löschen</button>
                                     </form>
 
                                 </div>
@@ -100,7 +100,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-secondary" type="submit">Änderung speichern</button>
+                                        <button class="btn btn-dark" type="submit">Änderung speichern</button>
                                     </form>
                                 </div>
                             </div>
