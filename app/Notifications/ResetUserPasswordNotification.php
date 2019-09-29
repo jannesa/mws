@@ -66,6 +66,7 @@ class ResetUserPasswordNotification extends Notification implements ShouldQueue
             ->subject(Lang::getFromJson('PASSWORT ZURÜCKSETZEN'))
             ->line(Lang::getFromJson('Sie erhalten diese E-Mail, weil wir eine Aufforderung zum Zurücksetzen des Passworts für Ihr Konto erhalten haben.'))
             ->action(Lang::getFromJson('Passwort zurücksetzen'), url(config('localhost:8000').route('password.reset.token', [$this->token, 'email=' . encrypt($notifiable->email)], false)))
+            ->line(Lang::getFromJson('Dieser Link läuft in :count Minuten ab.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
             ->line(Lang::getFromJson('Wenn Sie kein Zurücksetzen des Kennworts angefordert haben, ist keine weitere Aktion erforderlich.    '));
     }
 
