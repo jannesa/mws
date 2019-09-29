@@ -53,8 +53,8 @@
 
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
-                                    <a class="btn btn-link" href="{{ route('password.reset') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                    <a class="btn btn-link" href="{{ route('auth.password.reset') }}">
+                                        {{ __('Passwort vergessen?') }}
                                     </a>
                                 </div>
                             </div>

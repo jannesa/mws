@@ -8,6 +8,8 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
+//use Illuminate\Auth\Notifications\ResetPassword;
+
 class ResetUserPasswordNotification extends Notification implements ShouldQueue
 {
     use Queueable;
@@ -61,10 +63,10 @@ class ResetUserPasswordNotification extends Notification implements ShouldQueue
         }
 
         return (new MailMessage)
-            ->subject(Lang::getFromJson('Reset Password Notification'))
-            ->line(Lang::getFromJson('You are receiving this email because we received a password reset request for your account.'))
-            ->action(Lang::getFromJson('Reset Password'), url(config('app.url').route('password.reset', $this->token, false)))
-            ->line(Lang::getFromJson('If you did not request a password reset, no further action is required.'));
+            ->subject(Lang::getFromJson('PASSWORT ZURÜCKSETZEN'))
+            ->line(Lang::getFromJson('Sie erhalten diese E-Mail, weil wir eine Aufforderung zum Zurücksetzen des Passworts für Ihr Konto erhalten haben.'))
+            ->action(Lang::getFromJson('Passwort zurücksetzen'), url(config('localhost:8000').route('password.reset.token', [$this->token, 'email=' . encrypt($notifiable->email)], false)))
+            ->line(Lang::getFromJson('Wenn Sie kein Zurücksetzen des Kennworts angefordert haben, ist keine weitere Aktion erforderlich.    '));
     }
 
     /**

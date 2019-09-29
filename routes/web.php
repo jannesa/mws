@@ -72,9 +72,11 @@ Route::post('/auth/admin-dashboard','AdminHomeController@deleteUser')->name('adm
 
 // Password Reset
 
-Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
-Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::post('auth/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('auth.password.email');
 
-//Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
-//Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset.post');
+Route::get('auth/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('auth.password.reset');
 
+
+Route::get('auth/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
+
+Route::post('auth/password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
