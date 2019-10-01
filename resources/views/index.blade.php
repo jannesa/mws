@@ -18,8 +18,8 @@
             <p>
 
                 <a class="btn btn-primary" href="{{ route('user.auth.login') }}">&nbsp;Login</a>
+                <a class="btn btn-secondary" href="{{ route('user.auth.register') }}">&nbsp;Register</a>
 
-                <a href="#" class="btn btn-secondary">sonstige aktion</a>
             </p>
         </div>
     </section>
@@ -27,11 +27,13 @@
         <div class="container">
             <div class="row">
 
-                <p>Mit unserem Musik-Wunsch-System wird es für Jedermann/ Frau ein Kinderspiel, die Musikwünsche der Gäste zu sammeln und auszuwerten.
+                <p>Mit unserem Musik-Wunsch-System ist es für Jeden ein Kinderspiel, die Musikwünsche der Gäste zu sammeln und auszuwerten.
                     Unsere Zielgruppe sind einfache Privatpersonen, die eine Geburtstagsfeier feiern, DJs die Musikwünsche des Publikums sammeln möchten bis hin zum Großveranstalter der z.B.
                     eine Analyse der zu spielenden Musik benötigt. Was ist zu tun? Loggen Sie sich im MWS Dashboard ein, erstellen Sie ein Event, versenden Sie den automatisch erzeugten Link an Ihre Gäste und überlassen Sie uns das Sammeln der Musikwünsche!
                 </p>
             </div>
         </div>
     </div>
+
+
 @endsection
