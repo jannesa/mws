@@ -12,24 +12,11 @@
 
 
 
-    <div class="album text-muted">
-        <div class="container">
-            <div class="row">
-                <h1> @if( Auth::guard('user')->check())
-                        Willkommen
-
-                        {{{ Auth::user()->vorname }}}
-
-                    @endif
-                </h1>
-            </div>
-        </div>
-    </div>
-
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <br />
-            <h3 align="center">Songwünsche</h3>
+            <h3 align="center">Songwünsche für das Event {{$event_name}}</h3>
             <br />
 
             @if(isset($songs[0]['event_id']))
@@ -100,6 +87,7 @@
             </table>
         </div>
     </div>
+</div>
 
 
 @endsection

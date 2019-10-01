@@ -96,9 +96,10 @@ class EventController extends Controller
     public function showSongs($link_hash){
         $event_daten = DB::table('event')->where('event_hash', $link_hash)->first();
         $event_id = $event_daten -> event_id;
+        $event_name = $event_daten->titel;
 
         $songs = SongWunsch::where('event_id',$event_id)->get();
-        return view('/songs',['songs' => $songs]);
+        return view('/songs',['songs' => $songs])->with('event_name', $event_name);
     }
 
 
