@@ -17,8 +17,8 @@
             <p class="lead text-light">Musikwünsche in Echtzeit für Ihre Party! Ihre Gäste entscheiden was gespielt wird!</p>
             <p>
 
-                <a class="btn btn-primary" href="{{ route('user.auth.login') }}">&nbsp;Login</a>
-                <a class="btn btn-secondary" href="{{ route('user.auth.register') }}">&nbsp;Register</a>
+                <button class="btn btn-outline-primary waves-effect" href="{{ route('user.auth.login') }}">&nbsp;Login</button>
+                <button class="btn btn-outline-secondary waves-effect" href="{{ route('user.auth.register') }}">&nbsp;Register</button>
 
             </p>
         </div>
@@ -31,9 +31,11 @@
                     Unsere Zielgruppe sind einfache Privatpersonen, die eine Geburtstagsfeier feiern, DJs die Musikwünsche des Publikums sammeln möchten bis hin zum Großveranstalter der z.B.
                     eine Analyse der zu spielenden Musik benötigt. Was ist zu tun? Loggen Sie sich im MWS Dashboard ein, erstellen Sie ein Event, versenden Sie den automatisch erzeugten Link an Ihre Gäste und überlassen Sie uns das Sammeln der Musikwünsche!
                 </p>
+
             </div>
         </div>
     </div>
+
 
 
 @endsection

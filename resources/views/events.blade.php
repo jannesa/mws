@@ -4,12 +4,12 @@
 
 @section('content')
 
-    <div class="album text-muted">
-        <div class="container">
+
+        <div class="container mb-5 mt-5">
             <div class="row">
                 <div class="col-12">
                     <h1>Events</h1>
-                    <a class="btn btn-primary" href="{!! url('events_erstellen') !!}">&nbsp;Event erstellen</a>
+                    <a class="btn btn-outline-primary waves-effect" href="{!! url('events_erstellen') !!}">&nbsp;Event erstellen</a>
                 </div>
                 @if(count($events)>0)
                     @foreach($events as $event )
@@ -33,15 +33,15 @@
                                     @endif
 
 
-                                    <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}">Wünsche</a>
+                                    <a class="btn btn-outline-primary waves-effect" href="{{"songs/".$event->event_hash}}">Wünsche</a>
 
-                                    <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-primary">
+                                    <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-outline-info waves-effect">
                                         Event-Link Kopieren
                                         <span style="display: none;" class="animation">in die Zwischenablage kopiert!</span>
                                     </button>
                                     <span style="position: absolute; top: -2000px; left: -2000px;" id="Z{{$event->event_hash}}">{{url("guest/".$event->event_hash)}}</span>
 
-                                    <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}">
+                                    <button class="btn btn-outline-info waves-effect" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}">
                                         bearbeiten
                                     </button>
 
@@ -50,7 +50,7 @@
                                             <div class="col">
                                                 <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
                                             </div>
-                                        <button class="btn btn-danger" type="submit">Löschen</button>
+                                        <button class="btn btn-outline-danger waves-effect" type="submit">Löschen</button>
                                     </form>
 
                                 </div>
@@ -100,7 +100,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-dark" type="submit">Änderung speichern</button>
+                                        <button class="btn btn-outline-success" type="submit">Änderung speichern</button>
                                     </form>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
             </div>
 
         </div>
-    </div>
+
 @endsection
 
 @section('script')

@@ -82,7 +82,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">Jetzt registrieren</button>
+                                    <button type="submit" class="btn btn-outline-primary waves-effect">Jetzt registrieren</button>
                                 </div>
                             </div>
                         </form>

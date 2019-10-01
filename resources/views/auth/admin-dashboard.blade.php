@@ -52,7 +52,7 @@
                                     <form method="POST" action="{{ route('admin.delete.user') }}">
                                         @csrf
                                         <input id="id" type="hidden" class="form-control" name="id" value="{{$user->id}}">
-                                        <button type="submit" class="btn btn-primary">löschen</button>
+                                        <button type="submit" class="btn btn-outline-primary waves-effect">löschen</button>
                                     </form>
                                 </td>
                             </tr>
