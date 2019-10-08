@@ -11,9 +11,9 @@
 
             @auth('user')
 
-                <li class="nav-item {{ Request::is('user.dashboard') ? 'active' : '' }}" title="Dashboard">
-                    <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
-                </li>
+{{--                <li class="nav-item {{ Request::is('user.dashboard') ? 'active' : '' }}" title="Dashboard">--}}
+{{--                    <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>--}}
+{{--                </li>--}}
                 <li class="nav-item {{ Request::is('events') ? 'active' : '' }}" title="events">
                     <a class="nav-link" href="{!! url('events') !!}">&nbsp;Events</a>
                 </li>
