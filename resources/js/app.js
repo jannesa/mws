@@ -31,3 +31,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
   //  el: '#app',
 //});
 
+let bns = $(".confirm-delete");
+
+bns.on("click", function() {
+    var form = $(this).closest('form') ;
+
+    if (confirm("Sind Sie sicher?") === true) {
+        console.log(true);
+        form.submit();
+    }
+    return false;
+
+});

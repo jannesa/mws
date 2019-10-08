@@ -49218,6 +49218,18 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 //  el: '#app',
 //});
 
+var bns = $(".confirm-delete");
+bns.on("click", function () {
+  var form = $(this).closest('form');
+
+  if (confirm("Sind Sie sicher?") === true) {
+    console.log(true);
+    form.submit();
+  }
+
+  return false;
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

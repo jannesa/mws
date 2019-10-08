@@ -50,7 +50,7 @@
                                             <div class="col">
                                                 <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
                                             </div>
-                                        <button class="btn btn-danger" type="submit">Löschen</button>
+                                        <button class="confirm-delete btn btn-danger" type="button">Löschen</button>
                                     </form>
 
                                 </div>
