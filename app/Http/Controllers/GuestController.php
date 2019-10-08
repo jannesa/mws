@@ -7,7 +7,7 @@ use App\SongWunsch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use mysql_xdevapi\Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 
 class guestController extends Controller
@@ -34,6 +34,12 @@ class guestController extends Controller
 
     public function addSong(Request $request)
     {
+        //  Hinweise für Jannes: SESSION ID ABGREIFEN
+        // $session_id = Session::getId();
+
+
+
+
         //Schauen welcher Spam Filter aktiv ist oder ob keiner aktiv ist.
         $spamfilter = $request['event_spam'];
         if($spamfilter == 0){
