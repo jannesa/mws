@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="form-label-group">
-                                <input type="checkbox" name="status" value="aktiv" checked> Event aktiv
+                                <input type="checkbox" name="status" value="aktive" checked> Event aktiv
                             </div>
                             <br>
 
