@@ -17,8 +17,8 @@
                                 <label for="inputTitel">Event titel</label>
                             </div>
                             <div class="form-label-group">
-                                <input type="text" name="inputBeschreibung" class="form-control" placeholder="Infos" maxlength="500">
-                                <label for="inputTitel">Event infos</label>
+                                <textarea name="inputBeschreibung" class="form-control" placeholder="Infos" maxlength="500"></textarea>
+                                <label for="inputBeschreibung">Event infos</label>
                             </div>
 
                             <div class="form-label-group">
