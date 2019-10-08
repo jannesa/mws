@@ -10,6 +10,7 @@ use App\Event;
 use App\SongWunsch;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 
 class EventController extends Controller
@@ -57,7 +58,7 @@ class EventController extends Controller
         $Event->user_email = $email;
         $Event->spamfilter = $event_spamfilter;
         $Event->status = $event_status;
-        $Event->event_hash = str_random(10);
+        $Event->event_hash = Str::random(10);
         $Event->save();
 
         return redirect('/events');
