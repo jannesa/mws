@@ -13,11 +13,11 @@
 
                         <form class="form-signin" method="post" action="speichern">
                             <div class="form-label-group">
-                                <input type="text" name="inputTitel" class="form-control" placeholder="Titel" required autofocus>
+                                <input type="text" name="inputTitel" class="form-control" placeholder="Titel" maxlength="191" required autofocus>
                                 <label for="inputTitel">Event titel</label>
                             </div>
                             <div class="form-label-group">
-                                <input type="text" name="inputBeschreibung" class="form-control" placeholder="Infos">
+                                <input type="text" name="inputBeschreibung" class="form-control" placeholder="Infos" maxlength="500">
                                 <label for="inputTitel">Event infos</label>
                             </div>
 
