@@ -23,10 +23,10 @@ class CreateTableEvent extends Migration
 
             $table->timestampsTz();
 
-            $table->string('beschreibung');
+            $table->string('beschreibung')->nullable();
             $table->boolean('spamfilter');
             $table->string('user_email');
-            $table->string('event_hash')->unique()->nullable();
+            $table->string('event_hash')->unique();
 
             $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade');
 

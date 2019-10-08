@@ -27,9 +27,6 @@
                             <br>
 
 
-{{--                            <input type="checkbox" name="spamfilter" value="1">  Spamfilter aktiv--}}
-
-
                             <fieldset>
                                 <input type="radio" id="spamaus" name="spamfilter" value="0" checked>
                                 <label for="spamaus"> Spamfilter aus</label>

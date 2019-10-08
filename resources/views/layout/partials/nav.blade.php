@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">MWS</a>
+    <a class="navbar-brand" href="{!! url('') !!}">MWS</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,9 +11,9 @@
 
             @auth('user')
 
-                <li class="nav-item {{ Request::is('user.dashboard') ? 'active' : '' }}" title="Dashboard">
-                    <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
-                </li>
+{{--                <li class="nav-item {{ Request::is('user.dashboard') ? 'active' : '' }}" title="Dashboard">--}}
+{{--                    <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>--}}
+{{--                </li>--}}
                 <li class="nav-item {{ Request::is('events') ? 'active' : '' }}" title="events">
                     <a class="nav-link" href="{!! url('events') !!}">&nbsp;Events</a>
                 </li>
@@ -30,11 +30,9 @@
                 </li>
 
              @else
-                <li class="nav-item {{ Request::is('guest') ? 'active' : '' }}" title="Guest">
-                    <a class="nav-link" href="{!! url('guest') !!}">&nbsp;Guest</a>
-                </li>
-                <li class="nav-item {{ Request::is('/') ? 'active' : '' }}" title="Start">
-                    <a class="nav-link" href="{!! url('') !!}">&nbsp;Start</a>
+
+                <li class="nav-item {{ Request::is('/') ? 'active' : '' }}" title="Startseite">
+                    <a class="nav-link" href="{!! url('') !!}">&nbsp;Startseite</a>
                 </li>
 
                 <li class="nav-item {{ Request::is('/auth/register/') ? 'active' : '' }}" title="register">

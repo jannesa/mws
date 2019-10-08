@@ -33,10 +33,10 @@
                                     @endif
 
 
-                                    <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}">Zum Event</a>
+                                    <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}">Wünsche</a>
 
                                     <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-primary">
-                                        Link Kopieren
+                                        Event-Link Kopieren
                                         <span style="display: none;" class="animation">in die Zwischenablage kopiert!</span>
                                     </button>
                                     <span style="position: absolute; top: -2000px; left: -2000px;" id="Z{{$event->event_hash}}">{{url("guest/".$event->event_hash)}}</span>
@@ -50,7 +50,7 @@
                                             <div class="col">
                                                 <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
                                             </div>
-                                        <button class="btn btn-secondary" type="submit">Löschen</button>
+                                        <button class="btn btn-danger" type="submit">Löschen</button>
                                     </form>
 
                                 </div>
@@ -62,10 +62,12 @@
 
                                         <div class="form-row">
                                             <div class="col-7">
+                                                <p class="card-text">Event-Name:</p>
                                                 <input type="text" class="form-control" name="titel" value="{{$event->titel}}" required>
                                             </div>
                                             <div class="col">
-                                                <input type="text" class="form-control" name="beschreibung" value="{{$event->beschreibung}}" required>
+                                                <p class="card-text">Beschreibung: </p>
+                                                <input type="text" class="form-control" name="beschreibung" value="{{$event->beschreibung}}" >
                                             </div>
                                             <div class="col">
                                                 <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
@@ -98,7 +100,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-secondary" type="submit">Änderung speichern</button>
+                                        <button class="btn btn-dark" type="submit">Änderung speichern</button>
                                     </form>
                                 </div>
                             </div>

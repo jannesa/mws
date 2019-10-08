@@ -30,6 +30,11 @@ Route::post('speichern', 'EventController@addEvent');
 Route::post('events_bearbeiten', 'EventController@editEvent')->name('event.bearbeiten');
 Route::post('events_loeschen', 'EventController@delete')->name('event.loeschen');
 
+
+//Songs
+Route::post('songs_aendern', 'EventController@editSongStatus')->name('song.aendern');
+Route::post('songs_loeschen', 'EventController@deleteSong')->name('song.loeschen');
+
 Route::get('songs/{link_hash}', 'EventController@showSongs');
 
 
@@ -63,3 +68,19 @@ Route::get('/auth/admin-dashboard', 'AdminHomeController@index')->name('admin.da
 
 
 Route::post('/auth/admin-dashboard','AdminHomeController@deleteUser')->name('admin.delete.user');
+
+
+// Password Reset
+
+Route::post('auth/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('auth.password.email');
+
+Route::get('auth/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('auth.password.reset');
+
+
+Route::get('auth/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
+
+Route::post('auth/password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
+
+
+//PDF Export
+Route::post('/dynamic_pdf/pdf', 'DynamicPDFController@pdf')->name('pdf.erstellen');

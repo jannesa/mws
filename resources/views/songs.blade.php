@@ -12,32 +12,32 @@
 
 
 
-    <div class="album text-muted">
-        <div class="container">
-            <div class="row">
-                <h1> @if( Auth::guard('user')->check())
-                        Willkommen
-
-                        {{{ Auth::user()->vorname }}}
-
-                    @endif
-                </h1>
-            </div>
-        </div>
-    </div>
-
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <br />
-            <h3 align="center">Songwünsche</h3>
+            <h3 align="center">Songwünsche für das Event {{$event_name}}</h3>
             <br />
+
+            @if(isset($songs[0]['event_id']))
+                <form method="post" action="{{ route('pdf.erstellen') }}" target="_blank">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="col">
+                        <input type="hidden" class="form-control" name="id" value="{{$songs[0]['event_id']}}">
+                    </div>
+                    <button class="btn btn-secondary" type="submit" >Als PDF exportieren</button>
+                </form>
+            @endif
+
             <table id="myTable2" class="table table-hover table-striped table-bordered">
                 <tr>
                     <th onclick="sortTable(0)">Songtitel</th>
                     <th onclick="sortTable(1)">Songinterpret</th>
                     <th onclick="sortTable(2)">Ranking</th>
                     <th onclick="sortTable(3)">Uhrzeit</th>
-                    <th onclick="sortTable(4)">gespielt</th>
+{{--                    <th onclick="sortTable(4)">Status</th>--}}
+                    <th>Status</th>
+                    <th>Löschen</th>
                 </tr>
 
                 @foreach($songs as $song)
@@ -47,7 +47,39 @@
                         <td>{{$song['song_interpret']}}</td>
                         <td>{{$song['ranking']}}</td>
                         <td>{{$song['uhrzeit']}}</td>
-                        <td>{{$song['gespielt']}}</td>
+
+                        <td>
+                            <form method="post" action="{{ route('song.aendern') }}" >
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="col">
+                                    <input type="hidden" class="form-control" name="titel" value="{{$song['song_titel']}}">
+                                    <input type="hidden" class="form-control" name="interpret" value="{{$song['song_interpret']}}">
+                                    <input type="hidden" class="form-control" name="eventid" value="{{$song['event_id']}}">
+                                    @if($song['gespielt'] == 0)
+                                        <input type="hidden" class="form-control" name="gespielt" value="1">
+                                    @elseif($song['gespielt'] == 1)
+                                        <input type="hidden" class="form-control" name="gespielt" value="0">
+                                    @endif
+                                </div>
+                                @if($song['gespielt'] == 0)
+                                    <button class="btn btn-warning" type="submit">Noch nicht gespielt</button>
+                                @elseif($song['gespielt'] == 1)
+                                    <button class="btn btn-success" type="submit">Bereits gespielt</button>
+                                @endif
+                            </form>
+                        </td>
+
+                        <td>
+                            <form method="post" action="{{ route('song.loeschen') }}" >
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="col">
+                                    <input type="hidden" class="form-control" name="titel" value="{{$song['song_titel']}}">
+                                    <input type="hidden" class="form-control" name="interpret" value="{{$song['song_interpret']}}">
+                                    <input type="hidden" class="form-control" name="eventid" value="{{$song['event_id']}}">
+                                </div>
+                                <button class="btn btn-danger" type="submit">Löschen</button>
+                            </form>
+                        </td>
 
                     </tr>
                 @endforeach
@@ -55,6 +87,7 @@
             </table>
         </div>
     </div>
+</div>
 
 
 @endsection

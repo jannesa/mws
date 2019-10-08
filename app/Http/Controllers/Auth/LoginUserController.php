@@ -25,7 +25,7 @@ class LoginUserController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/auth/user-dashboard';
+    protected $redirectTo = '/events';
 
     /**
      * Create a new controller instance.

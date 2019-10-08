@@ -47,7 +47,8 @@ class AdminHomeController extends Controller
 
         $user_id = $request->input('id');
 
-        $user = DB::table('users')->where('id', '<>' , $user_id);
+
+        $user = DB::table('users')->where('id', $user_id);
 
         $user->delete();
 

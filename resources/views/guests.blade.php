@@ -25,9 +25,10 @@
                         @if($event_daten->status == 'aktive')
                             <h5 class="card-title text-center">Wünsch dir einen Song für das Event "{{$event_daten->titel}}"</h5>
                             <br>
-
-                            <h6 class="card-title text-left">Event-Infos: </h6>
-                            <a>{{$event_daten->beschreibung}}</a>
+                            @if($event_daten->beschreibung)
+                                <h6 class="card-title text-left">Event-Infos: </h6>
+                                <a>{{$event_daten->beschreibung}}</a>
+                            @endif
                         @elseif($event_daten->status == 'inaktive')
                                 <h5 class="card-title text-center">Das Event "{{$event_daten->titel}}" wurde vom Ersteller deaktiviert!</h5>
                         @endif
@@ -70,7 +71,7 @@
 
                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
                             @elseif($event_daten->status == 'inaktive')
-                               <button disabled class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
+                               <button disabled class="btn btn-outline-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
                             @endif
 
                             <hr class="my-4">

@@ -27,9 +27,7 @@ class EventController extends Controller
 
     public function showAllEvents(){
         $user = Auth::user();
-
         $events = Event::where('user_email',$user->email)->get();
-
         return view('events')->with('events', $events->reverse());
     }
 
@@ -46,7 +44,6 @@ class EventController extends Controller
         }else if($request['spamfilter']== 2){
             $event_spamfilter = '2';
         }
-
         if($request['status']){
             $event_status = 'aktive';
         }else{
@@ -55,21 +52,17 @@ class EventController extends Controller
 
         $user = Auth::user();
         $email = $user->email;
-
         $Event->titel = $event_titel;
         $Event->beschreibung = $event_beschreibung;
         $Event->user_email = $email;
         $Event->spamfilter = $event_spamfilter;
         $Event->status = $event_status;
         $Event->event_hash = str_random(10);
-
         $Event->save();
 
         return redirect('/events');
     }
     public function delete(Request $request){
-
-
         Event::find($request['id']) -> delete();
         return redirect('/events');
     }
@@ -95,7 +88,6 @@ class EventController extends Controller
         $event -> beschreibung= $request['beschreibung'];
         $event -> spamfilter = $event_spamfilter;
         $event -> status = $event_status;
-
         $event -> save();
 
         return redirect('events');
@@ -104,10 +96,47 @@ class EventController extends Controller
     public function showSongs($link_hash){
         $event_daten = DB::table('event')->where('event_hash', $link_hash)->first();
         $event_id = $event_daten -> event_id;
+        $event_name = $event_daten->titel;
 
         $songs = SongWunsch::where('event_id',$event_id)->get();
-
-        return view('/songs',['songs' => $songs]);
-
+        return view('/songs',['songs' => $songs])->with('event_name', $event_name);
     }
+
+
+    public function deleteSong(Request $request){
+        DB::table('song_wuensche')
+            ->where('song_titel', $request->titel)
+            ->where('song_interpret', $request->interpret)
+            ->where('event_id', $request->eventid)
+            ->delete();
+
+        //$songs = SongWunsch::where('event_id',$request->eventid)->get();
+        //return view('/songs',['songs' => $songs]);
+
+        $event_daten = DB::table('event')->where('event_id', $request->eventid)->first();
+        $event_hash = $event_daten -> event_hash;
+        return redirect('songs/'.$event_hash);
+    }
+
+
+
+
+
+    public function editSongStatus(Request $request){
+        DB::table('song_wuensche')
+            ->where('song_titel', $request->titel)
+            ->where('song_interpret', $request->interpret)
+            ->where('event_id', $request->eventid)
+            ->update(['gespielt' => $request->gespielt]);
+
+        //$songs = SongWunsch::where('event_id',$request->eventid)->get();
+        //return view('/songs',['songs' => $songs]);
+
+        $event_daten = DB::table('event')->where('event_id', $request->eventid)->first();
+        $event_hash = $event_daten -> event_hash;
+        return redirect('songs/'.$event_hash);
+    }
+
+
+
 }
