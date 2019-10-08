@@ -39,11 +39,11 @@
                         <form class="form-signin" method="post" action="guest">
                             @if($event_daten->status == 'aktive')
                                 <div class="form-label-group">
-                                    <input type="text" name="song_titel" class="form-control" placeholder="Titel" value="{{ old('song_titel') }}" required autofocus>
+                                    <input type="text" name="song_titel" class="form-control" placeholder="Titel" value="{{ old('song_titel') }}" maxlength="100" required autofocus>
                                     <label for="song_titel"></label>
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="text" name="song_interpret" class="form-control" placeholder="Interpret" value="{{ old('song_interpret') }}" required>
+                                    <input type="text" name="song_interpret" class="form-control" placeholder="Interpret" value="{{ old('song_interpret') }}" maxlength="100" required>
                                     <label for="song_interpret"></label>
                                 </div>
                             @elseif($event_daten->status == 'inaktive')
