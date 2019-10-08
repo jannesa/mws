@@ -74,7 +74,7 @@
                                             </div>
                                         </div>
                                         <br>
-                                        @if($event->status == 'aktiv')
+                                        @if($event->status == 'aktive')
                                             <div class="form-label-group">
                                                 <input type="checkbox" name="status" value="aktiv" checked> Event aktiv
                                             </div>
