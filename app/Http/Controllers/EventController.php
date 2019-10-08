@@ -46,9 +46,9 @@ class EventController extends Controller
             $event_spamfilter = '2';
         }
         if($request['status']){
-            $event_status = 'aktive';
+            $event_status = 'aktiv';
         }else{
-            $event_status = 'inaktive';
+            $event_status = 'inaktiv';
         }
 
         $user = Auth::user();

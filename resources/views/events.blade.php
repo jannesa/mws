@@ -63,18 +63,18 @@
                                         <div class="form-row">
                                             <div class="col-7">
                                                 <p class="card-text">Event-Name:</p>
-                                                <input type="text" class="form-control" name="titel" value="{{$event->titel}}" required>
+                                                <input type="text" class="form-control" name="titel" value="{{$event->titel}}" maxlength="191" required>
                                             </div>
                                             <div class="col">
                                                 <p class="card-text">Beschreibung: </p>
-                                                <input type="text" class="form-control" name="beschreibung" value="{{$event->beschreibung}}" >
+                                                <textarea class="form-control" name="beschreibung" maxlength="500">{{$event->beschreibung}}</textarea>
                                             </div>
                                             <div class="col">
                                                 <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
                                             </div>
                                         </div>
                                         <br>
-                                        @if($event->status == 'aktive')
+                                        @if($event->status == 'aktiv')
                                             <div class="form-label-group">
                                                 <input type="checkbox" name="status" value="aktiv" checked> Event aktiv
                                             </div>
