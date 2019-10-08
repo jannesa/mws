@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="row justify-content-center mt-5 mb-5">
-            <div class="col-md-8">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">User Registrierung</div>
 
@@ -80,11 +80,59 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">Jetzt registrieren</button>
+                            <div class="row mb-3 text-center">
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="card mb-4 box-shadow">
+                                        <div class="card-header">
+                                            <h4 class="my-0 font-weight-normal">Free</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h1 class="card-title pricing-card-title">€0 <small class="text-muted">/ Monat</small></h1>
+                                            <ul class="list-unstyled mt-3 mb-4">
+                                                <li>für Privatpersonen</li>
+                                                <li>2 aktive Events</li>
+                                                <li>5 inaktive Events</li>
+                                            </ul>
+
+                                            <button type="submit" name="abotype" value="free" class="btn btn-primary">Kostenlos registrieren</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="card mb-4 box-shadow">
+                                        <div class="card-header">
+                                            <h4 class="my-0 font-weight-normal">Pro</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h1 class="card-title pricing-card-title">€2.99 <small class="text-muted">/ Monat</small></h1>
+                                            <ul class="list-unstyled mt-3 mb-4">
+                                                <li>10 aktive Events</li>
+                                                <li>20 inaktive Events</li>
+                                                <li>&nbsp;</li>
+                                            </ul>
+                                            <button type="submit" name="abotype" value="pro" class="btn btn-outline-primary">Pro abbonieren</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="card mb-4 box-shadow">
+                                        <div class="card-header">
+                                            <h4 class="my-0 font-weight-normal">Premium</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h1 class="card-title pricing-card-title">€6.99 <small class="text-muted">/ Monat</small></h1>
+                                            <ul class="list-unstyled mt-3 mb-4">
+                                                <li>unbegrenzte Anzahl an Events</li>
+                                                <li>&nbsp;</li>
+                                                <li>&nbsp;</li>
+                                            </ul>
+                                            <button type="submit" name="abotype" value="premium" class="btn btn-outline-primary">Premium abbonieren</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+
                         </form>
                     </div>
                 </div>

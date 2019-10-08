@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Abo;
 use App\User;
+use App\UserModel as UserModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Response;
@@ -62,6 +64,7 @@ class RegisterUserController extends Controller
      */
     public function register(Request $request)
     {
+
         $validation = $this->validator($request->all());
 
         if ($validation->fails())  {
@@ -69,9 +72,38 @@ class RegisterUserController extends Controller
             return redirect()->back()->withInput()->withErrors($validation->errors());
         }
 
-        event(new Registered($user = $this->create($request->all())));
-        $this->guard()->login($user);
-        return redirect($this->redirectPath())->with('success', 'Registrierung erfolgreich!');
+
+        $user = new UserModel();
+        $user->vorname = $request->input('vorname');
+        $user->nachname = $request->input('nachname');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+
+
+        switch ($request->input('abotype')) {
+            case 'free':
+
+                $user->abo_id = 1;
+
+                break;
+
+            case 'pro':
+
+                $user->abo_id = 2;
+
+                break;
+
+            case 'premium':
+
+                $user->abo_id = 3;
+
+                break;
+        }
+
+        $user->save();
+
+
+        return redirect('/auth/login/')->with('success', 'Registrierung erfolgreich!');
     }
 
     /**
@@ -105,10 +137,6 @@ class RegisterUserController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], $messages);
 
-        /*if ($validator->fails()){
-
-            return back()->withErrors($validator);
-        }*/
 
     }
 

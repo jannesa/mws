@@ -11,6 +11,8 @@ class Abo extends Model
     protected $keyType = 'integer';
     protected $primaryKey = 'abo_id';
 
+    public $timestamps = false;
+
 
     public function user()
     {
@@ -20,5 +22,16 @@ class Abo extends Model
     }
 
 
+    protected $fillable = [
+        'abo_id',
+        'abo_typ',
+        'abo_laenge',
+        'abo_preis',
+        'aktive_events' ,
+        'inaktive_events',
+        'buchungsbeginn',
+        'zahlungsart',
+        'zahlungsrhythmus'
+    ];
 
 }
