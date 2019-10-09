@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 
 class UserHomeController extends Controller
 {
@@ -46,8 +48,14 @@ class UserHomeController extends Controller
 
     public function editUserData(Request $request){
 
+        $validation = $this->validator($request->all());
 
-        //muss noch validiert werden
+        if ($validation->fails())  {
+
+            return redirect()->back()->withInput()->withErrors($validation->errors());
+        }
+
+
         $vorname_new = $request->input('vorname');
         $nachname_new = $request->input('nachname');
         $email_new = $request->input('email');
@@ -89,5 +97,27 @@ class UserHomeController extends Controller
 
     }
 
+    protected function validator(array $data)
+    {
+        $messages = [
 
+            'vorname.required' => 'Es wurde kein Vorname angegeben!',
+            'vorname.max' => 'Der Vorname ist zu lang!',
+            'vorname.string' => 'Der Vorname muss eine Zeichenkette sein!',
+            'nachname.required' => 'Es wurde keine Nachname angegeben!',
+            'nachname.max' => 'Der Vorname ist zu lang!',
+            'nachname.string' => 'Der Vorname muss eine Zeichenkette sein!',
+            'email.required' => 'Es wurde keine E-Mail angegeben!',
+            'email' => 'Das ist keine gültige E-Mail Adresse!',
+            'email.unique' => ' Diese E-Mail-Adresse wurde schon verwendet!'
+        ];
+
+        return Validator::make($data, [
+            'vorname' => ['required', 'string', 'max:25'],
+            'nachname' => ['required', 'string', 'max:25'],
+            'email' => ['required', 'string', 'email', 'max:50'],
+        ], $messages);
+
+
+    }
 }

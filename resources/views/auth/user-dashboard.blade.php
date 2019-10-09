@@ -10,6 +10,19 @@
         </div>
     @endif
 
+    @if ($errors->has('vorname'))
+        <div class="alert alert-danger">
+              <strong>{{ $errors->first('vorname') }}</strong>
+        </div>
+    @elseif($errors->has('nachname'))
+        <div class="alert alert-danger">
+            <strong>{{ $errors->first('nachname') }}</strong>
+        </div>
+    @elseif($errors->has('email'))
+        <div class="alert alert-danger">
+            <strong>{{ $errors->first('email') }}</strong>
+        </div>
+    @endif
 
         <div class="container">
 
