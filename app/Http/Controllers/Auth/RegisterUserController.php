@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Abo;
-use App\User;
+use App\Usertest;
 use App\UserModel as UserModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
@@ -144,11 +144,11 @@ class RegisterUserController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Usertest
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Usertest::create([
             'vorname' => $data['vorname'],
             'nachname' => $data['nachname'],
             'email' => $data['email'],

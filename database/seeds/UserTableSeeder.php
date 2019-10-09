@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\User;
+use App\Usertest;
 
 class UserTableSeeder extends Seeder
 {
@@ -14,10 +14,10 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         /** @var Collection $administrators */
-        $user  = User::all();
+        $user  = Usertest::all();
 
         if($user->isEmpty()) {
-            User::create([
+            Usertest::create([
                 'vorname' => 'Paul',
                 'nachname' => 'Test',
                 'email' => 'paul@test.de',
@@ -26,7 +26,7 @@ class UserTableSeeder extends Seeder
             ]);
 
 
-            User::create([
+            Usertest::create([
                 'vorname' => 'J',
                 'nachname' => 'A',
                 'email' => 'jannes@test.de',
@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder
                 'abo_id' => 2
             ]);
 
-            User::create([
+            Usertest::create([
                 'vorname' => 'katja',
                 'nachname' => 's',
                 'email' => 'kat@abc.de',
@@ -42,7 +42,7 @@ class UserTableSeeder extends Seeder
                 'abo_id' => 3
             ]);
 
-            User::create([
+            Usertest::create([
                 'vorname' => 'sabrina',
                 'nachname' => 'g',
                 'email' => 'sabrina@abc.de',
