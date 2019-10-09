@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usertest extends Authenticatable
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -61,6 +61,8 @@ class Usertest extends Authenticatable
     {
         $this->notify(new ResetUserPasswordNotification($token));
     }
+
+
 
 
 }

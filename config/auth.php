@@ -83,7 +83,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Usertest::class,
+            'model' => App\User::class,
         ],
 
         'admins' => [
