@@ -22,20 +22,20 @@
                             </div>
 
                             <div class="form-label-group">
-                                <input type="checkbox" name="status" value="aktive" checked> Event aktiv
+                                <input type="checkbox" name="status" value="aktive" data-toggle="tooltip" title="Für inaktive Events können keine Wünsche abgegeben werden!" checked> Event aktiv
                             </div>
                             <br>
 
 
                             <fieldset>
                                 <input type="radio" id="spamaus" name="spamfilter" value="0" checked>
-                                <label for="spamaus"> Spamfilter aus</label>
+                                <label for="spamaus" data-toggle="tooltip" title="Unbegrenzte Wünsche möglich!"> Spamfilter aus</label>
                                 <br>
                                 <input type="radio" id="spamcaptcha" name="spamfilter" value="1">
-                                <label for="spamcaptcha"> Spamfilter Captcha</label>
+                                <label for="spamcaptcha" data-toggle="tooltip" title="Gäste müssen ein Captcha Code eingeben!"> Spamfilter Captcha</label>
                                 <br>
                                 <input type="radio" id="spamlimit" name="spamfilter" value="2">
-                                <label for="spamlimit"> Spamfilter Limit</label>
+                                <label for="spamlimit" data-toggle="tooltip" title="Fünf Wünsche im Fünf-Minuten-Zyklus möglich"> Spamfilter Limit</label>
                             </fieldset>
                             <br>
 

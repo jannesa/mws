@@ -33,15 +33,15 @@
                                     @endif
 
 
-                                    <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}">Wünsche</a>
+                                    <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}" data-toggle="tooltip" title="Musikwünsche für dieses Event anzeigen">Wünsche</a>
 
-                                    <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-primary">
+                                    <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-primary" data-toggle="tooltip" title="Link für Gäste kopieren">
                                         Event-Link Kopieren
                                         <span style="display: none;" class="animation">in die Zwischenablage kopiert!</span>
                                     </button>
                                     <span style="position: absolute; top: -2000px; left: -2000px;" id="Z{{$event->event_hash}}">{{url("guest/".$event->event_hash)}}</span>
 
-                                    <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}">
+                                    <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}" data-toggle="tooltip" title="Event bearbeiten">
                                         bearbeiten
                                     </button>
 
@@ -89,13 +89,13 @@
                                                 <div class="form-check">
                                                     <fieldset>
                                                         <input type="radio" id="spamaus" name="spamfilter" value="0" @if($event->spamfilter ==0)checked @endif>
-                                                        <label for="spamaus"> Spamfilter aus</label>
+                                                        <label for="spamaus" data-toggle="tooltip" title="Unbegrenzte Wünsche möglich!"> Spamfilter aus</label>
                                                         <br>
                                                         <input type="radio" id="spamcaptcha" name="spamfilter" value="1" @if($event->spamfilter ==1) checked @endif>
-                                                        <label for="spamcaptcha"> Spamfilter Captcha</label>
+                                                        <label for="spamcaptcha" data-toggle="tooltip" title="Gäste müssen ein Captcha Code eingeben!"> Spamfilter Captcha</label>
                                                         <br>
                                                         <input type="radio" id="spamlimit" name="spamfilter" value="2" @if($event->spamfilter ==2) checked @endif>
-                                                        <label for="spamlimit"> Spamfilter Limit</label>
+                                                        <label for="spamlimit" data-toggle="tooltip" title="Fünf Wünsche im Fünf-Minuten-Zyklus möglich"> Spamfilter Limit</label>
                                                     </fieldset>
                                                 </div>
                                             </div>
