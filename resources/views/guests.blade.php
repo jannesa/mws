@@ -22,14 +22,14 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
 
-                        @if($event_daten->status == 'aktive')
+                        @if($event_daten->status == 'aktiv')
                             <h5 class="card-title text-center">Wünsch dir einen Song für das Event "{{$event_daten->titel}}"</h5>
                             <br>
                             @if($event_daten->beschreibung)
                                 <h6 class="card-title text-left">Event-Infos: </h6>
                                 <a>{{$event_daten->beschreibung}}</a>
                             @endif
-                        @elseif($event_daten->status == 'inaktive')
+                        @elseif($event_daten->status == 'inaktiv')
                                 <h5 class="card-title text-center">Das Event "{{$event_daten->titel}}" wurde vom Ersteller deaktiviert!</h5>
                         @endif
 
@@ -37,7 +37,7 @@
                         <br>
                         <br>
                         <form class="form-signin" method="post" action="guest">
-                            @if($event_daten->status == 'aktive')
+                            @if($event_daten->status == 'aktiv')
                                 <div class="form-label-group">
                                     <input type="text" name="song_titel" class="form-control" placeholder="Titel" value="{{ old('song_titel') }}" maxlength="100" required autofocus>
                                     <label for="song_titel"></label>
@@ -46,7 +46,7 @@
                                     <input type="text" name="song_interpret" class="form-control" placeholder="Interpret" value="{{ old('song_interpret') }}" maxlength="100" required>
                                     <label for="song_interpret"></label>
                                 </div>
-                            @elseif($event_daten->status == 'inaktive')
+                            @elseif($event_daten->status == 'inaktiv')
                                 <div class="form-label-group">
                                     <input type="text" name="song_titel" class="form-control" placeholder="Titel" required autofocus disabled>
                                     <label for="song_titel"></label>
@@ -62,14 +62,14 @@
                             <input type="hidden" name="event_hash" value=" {{$event_daten->event_hash}}">
                             <input type="hidden" name="event_spam" value=" {{$event_daten->spamfilter}}">
 
-                            @if($event_daten->status == 'aktive')
+                            @if($event_daten->status == 'aktiv')
 
                                 @if($event_daten->spamfilter == '1')
                                     {!! captcha_image_html('ExampleCaptcha') !!}
                                     <input type="text" id="CaptchaCode" name="CaptchaCode" required>
                                 @endif
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
-                            @elseif($event_daten->status == 'inaktive')
+                            @elseif($event_daten->status == 'inaktiv')
                                <button disabled class="btn btn-outline-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
                             @endif
 

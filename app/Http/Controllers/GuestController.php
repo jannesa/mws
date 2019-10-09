@@ -88,7 +88,7 @@ class guestController extends Controller
             }
         }
 
-        // Wenn Spamfilter richtig negativ ist
+        // Wenn Spamfilter richtig ist
         if($validate){
             $SongWunsch = new SongWunsch();
 
@@ -110,7 +110,7 @@ class guestController extends Controller
                     ->value('ranking');
                 $rank++;
                 $SongWunsch::where('song_titel', $songtitel)-> where('song_interpret', $songinterpret)-> where('event_id', $eventid)
-                    ->update(['ranking' => $rank],['uhrzeit']);
+                    ->update(['ranking' => $rank, 'uhrzeit' => now()]);
             }
             else{
                 $SongWunsch->save();
