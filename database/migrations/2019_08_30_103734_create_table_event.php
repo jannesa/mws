@@ -28,7 +28,7 @@ class CreateTableEvent extends Migration
             $table->string('user_email');
             $table->string('event_hash')->unique();
 
-            $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade');
+            $table->foreign('user_email')->references('email')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

@@ -45,12 +45,17 @@
                                 <input type="hidden" name="user_id" value="{{$data->id}}" >
 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Vorname</label>
+                                    <label for="">Vorname</label>
                                     <input type="text" name="vorname" class="form-control" value="{{$data->vorname}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Nachname</label>
+                                    <label for="">Nachname</label>
                                     <input type="text" name="nachname" class="form-control" value="{{$data->nachname}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Email</label>
+                                    <input type="email" name="email" class="form-control" value="{{$data->email}}">
                                 </div>
 
                                 <div class="form-row">
