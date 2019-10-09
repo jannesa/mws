@@ -12,7 +12,7 @@
             @auth('user')
 
                 <li class="nav-item {{ Request::is('user.dashboard') ? 'active' : '' }}" title="Dashboard">
-                    <a class="nav-link" href="{{ route('user.dashboard') }}">Daten</a>
+                    <a class="nav-link" href="{{ route('user.dashboard') }}">Mein Konto</a>
                 </li>
 
                 <li class="nav-item {{ Request::is('events') ? 'active' : '' }}" title="events">
