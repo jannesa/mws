@@ -84,3 +84,10 @@ Route::post('auth/password/reset', 'Auth\ResetPasswordController@reset')->name('
 
 //PDF Export
 Route::post('/dynamic_pdf/pdf', 'DynamicPDFController@pdf')->name('pdf.erstellen');
+
+
+// User Daten ändern
+
+Route::post('/auth/user/edit', "UserHomeController@editUserData")->name('auth.user.edit');
+
+
