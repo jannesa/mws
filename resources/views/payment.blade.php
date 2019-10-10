@@ -43,16 +43,16 @@
                 </p>
 
                 @if($abotype_new == 1)
-                    <div class="card">
-                        <div class="card-body p-5">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-body p-5 ">
                     <p>Für Abo-Typ Free ist keine Zahlung notwendig!</p>
 
-                    <button class="btn btn-primary" type="button"> Speichern und zurück zum Dashboard! </button>
+                    <button class="btn btn-primary shadow" type="button"> Speichern und zurück zum Dashboard! </button>
                         </div>
                     </div>
 
                 @else
-                <div class="card">
+                <div class="card shadow-lg border-0">
                     <div class="card-body p-5">
 
                         <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
@@ -106,14 +106,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="subscribe btn btn-primary" type="button"> bestätigen  </button>
+                                    <button class="subscribe btn btn-primary shadow" type="button"> bestätigen  </button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="nav-tab-paypal">
                                 <p>Mit Paypal bezahlen</p>
                                 <p class="alert alert-info">Sie werden zu einer externen Seite weitergeleitet</p>
                                 <p>
-                                    <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Weiter zu Paypal  </button>
+                                    <button type="button" class="btn btn-primary shadow"> <i class="fab fa-paypal"></i> Weiter zu Paypal  </button>
                                 </p>
 
                             </div>
@@ -131,7 +131,7 @@
                                     <dt>IBAN: </dt>
                                     <dd> 123456789</dd>
                                 </dl>
-                                <button class="subscribe btn btn-primary" type="button"> bestätigen  </button>
+                                <button class="subscribe btn btn-primary shadow" type="button"> bestätigen  </button>
                             </div>
                         </div>
 

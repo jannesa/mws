@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
+                <div class="card card-signin my-5 shadow-lg border-0">
                     <div class="card-body">
                         <h5 class="card-title text-center">Event erstellen</h5>
 
@@ -40,8 +40,8 @@
                             <br>
 
                             <input type="hidden" name="_token" value=" {{ csrf_token() }}">
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">erstellen</button>
-                            <hr class="my-4">
+                            <button class="btn btn-primary btn-block" type="submit">Event erstellen</button>
+
                         </form>
                     </div>
                 </div>

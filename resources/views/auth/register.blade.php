@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row justify-content-center mt-5 mb-5">
             <div class="col-sm-12">
-                <div class="card">
+                <div class="card shadow-lg border-0">
                     <div class="card-header">User Registrierung</div>
 
                     <div class="card-body">
@@ -82,7 +82,7 @@
 
                             <div class="row mb-3 text-center">
                                 <div class="col-sm-12 col-md-4">
-                                    <div class="card mb-4 box-shadow">
+                                    <div class="card mb-4">
                                         <div class="card-header">
                                             <h4 class="my-0 font-weight-normal">Free</h4>
                                         </div>
@@ -94,12 +94,12 @@
                                                 <li>5 inaktive Events</li>
                                             </ul>
 
-                                            <button type="submit" name="abotype" value="free" class="btn btn-primary">Kostenlos registrieren</button>
+                                            <button type="submit" name="abotype" value="free" class="btn shadow btn-primary">Kostenlos registrieren</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-4">
-                                    <div class="card mb-4 box-shadow">
+                                    <div class="card mb-4">
                                         <div class="card-header">
                                             <h4 class="my-0 font-weight-normal">Pro</h4>
                                         </div>
@@ -110,12 +110,12 @@
                                                 <li>20 inaktive Events</li>
                                                 <li>&nbsp;</li>
                                             </ul>
-                                            <button type="submit" name="abotype" value="pro" class="btn btn-outline-primary">Pro abbonieren</button>
+                                            <button type="submit" name="abotype" value="pro" class="btn shadow btn-outline-primary">Pro abbonieren</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-4">
-                                    <div class="card mb-4 box-shadow">
+                                    <div class="card mb-4">
                                         <div class="card-header">
                                             <h4 class="my-0 font-weight-normal">Premium</h4>
                                         </div>
@@ -126,7 +126,7 @@
                                                 <li>&nbsp;</li>
                                                 <li>&nbsp;</li>
                                             </ul>
-                                            <button type="submit" name="abotype" value="premium" class="btn btn-outline-primary">Premium abbonieren</button>
+                                            <button type="submit" name="abotype" value="premium" class="btn shadow btn-outline-primary">Premium abbonieren</button>
                                         </div>
                                     </div>
                                 </div>

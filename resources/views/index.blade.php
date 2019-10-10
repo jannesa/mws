@@ -67,8 +67,8 @@
     <div class="container mb-5">
         <div class="row">
             <div class="col-12 text-center my-5">
-                <a class="btn btn-primary btn-lg" href="{{ route('user.auth.login') }}"> &nbsp;Login</a>
-                <a class="btn btn-success btn-lg" href="{{ route('user.auth.register') }}">&nbsp;Registrieren</a>
+                <a class="btn btn-primary btn-lg shadow" href="{{ route('user.auth.login') }}"> &nbsp;Login</a>
+                <a class="btn btn-success btn-lg shadow" href="{{ route('user.auth.register') }}">&nbsp;Registrieren</a>
 
             </div>
             <div class="col-12">
@@ -94,13 +94,13 @@
             <div class="card shadow-lg border-0">
                 <div class="card-body">
                     <h2 class="card-title"><i class="fas fa-headphones"></i> DJ's</h2>
-                    <p class="card-text">... DJs die Musikwünsche des Publikums sammeln möchten</p>
+                    <p class="card-text">... die Musikwünsche des Publikums sammeln möchten</p>
                 </div>
             </div>
             <div class="card shadow-lg border-0">
                 <div class="card-body">
                     <h2 class="card-title"><i class="fas fa-glass-cheers"></i> Veranstaltungen</h2>
-                    <p class="card-text">Von Klein- bis hin zum Großveranstalter der z.B.
+                    <p class="card-text">Vom Klein- bis hin zum Großveranstalter der z.B.
                         eine Analyse der zu spielenden Musik benötigt.</p>
                 </div>
             </div>

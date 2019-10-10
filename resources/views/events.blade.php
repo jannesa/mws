@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12">
                     <h1>Events</h1>
-                    <a class="btn btn-primary mb-3 mt-3" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
+                    <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
                 </div>
                 @if(count($events)>0)
                     @foreach($events as $event )
@@ -32,15 +32,15 @@
 
 
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}" data-toggle="tooltip" title="Musikwünsche für dieses Event anzeigen">Songwünsche</a>
+                                        <a class="btn btn-secondary shadow" href="{{"songs/".$event->event_hash}}" data-toggle="tooltip" title="Musikwünsche für dieses Event anzeigen">Songwünsche</a>
 
-                                        <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-primary" data-toggle="tooltip" title="Link für Gäste kopieren">
+                                        <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-primary shadow" data-toggle="tooltip" title="Link für Gäste kopieren">
                                             Event-Link
                                             <span style="display: none;" class="animation">in die Zwischenablage kopiert!</span>
                                         </button>
                                         <span style="position: absolute; top: -2000px; left: -2000px;" id="Z{{$event->event_hash}}">{{url("guest/".$event->event_hash)}}</span>
 
-                                        <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}" data-toggle="tooltip" title="Event bearbeiten">
+                                        <button class="btn btn-dark shadow" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}" data-toggle="tooltip" title="Event bearbeiten">
                                             bearbeiten
                                         </button>
                                     </div>
@@ -89,7 +89,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button class="btn btn-dark" type="submit">Änderung speichern</button>
+                                                <button class="btn btn-dark shadow" type="submit">Änderung speichern</button>
                                             </form>
                                         </div>
                                         <div class="col-lg-2 align-self-lg-end">
@@ -98,7 +98,7 @@
                                                 <div class="col">
                                                     <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
                                                 </div>
-                                                <button class="confirm-delete btn btn-danger" type="button">Löschen</button>
+                                                <button class="confirm-delete btn btn-danger shadow" type="button">Löschen</button>
                                             </form>
                                         </div>
                                     </div>

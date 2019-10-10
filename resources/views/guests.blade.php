@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
+                <div class="card card-signin my-5 shadow-lg border-0">
                     <div class="card-body">
 
                         @if($event_daten->status == 'aktiv')
@@ -66,14 +66,14 @@
 
                                 @if($event_daten->spamfilter == '1')
                                     {!! captcha_image_html('ExampleCaptcha') !!}
-                                    <input type="text" id="CaptchaCode" name="CaptchaCode" required>
+                                    <input type="text" class="form-control" id="CaptchaCode" name="CaptchaCode" placeholder="hier Captchacode eingeben" required>
                                 @endif
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
+                                <button class="btn btn-primary btn-block mt-5" type="submit">Wunsch abschicken</button>
+
                             @elseif($event_daten->status == 'inaktiv')
-                               <button disabled class="btn btn-outline-primary btn-block text-uppercase" type="submit">Wunsch abschicken</button>
+                               <button disabled class="btn btn-outline-primary btn-block" type="submit">Wunsch abschicken</button>
                             @endif
 
-                            <hr class="my-4">
                         </form>
                     </div>
                 </div>
