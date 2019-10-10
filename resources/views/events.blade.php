@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12">
                     <h1>Events</h1>
-                    <a class="btn btn-primary" href="{!! url('events_erstellen') !!}">&nbsp;Event erstellen</a>
+                    <a class="btn btn-primary mb-3 mt-3" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
                 </div>
                 @if(count($events)>0)
                     @foreach($events as $event )
