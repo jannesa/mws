@@ -1,2 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+
+.startpage-header {
+  background: url(/images/2NIGHTS_SchüHa-6163_sm.jpg?bea30992dacff1fd5f821f9c95791d77);
+  background-size: cover;
+}
 

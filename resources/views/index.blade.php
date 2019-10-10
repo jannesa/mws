@@ -11,14 +11,14 @@
     @endif
 
 
-    <section class="jumbotron text-center" style="background-image: url('/img/header_background.jpg');background-size: cover;background-position: bottom;">
+    <section class="jumbotron text-center startpage-header">
         <div class="container">
             <h1 class="jumbotron-heading text-light">Willkommen beim MusikWunschSystem</h1>
             <p class="lead text-light">Musikwünsche in Echtzeit für Ihre Party! Ihre Gäste entscheiden was gespielt wird!</p>
             <p>
 
                 <a class="btn btn-primary" href="{{ route('user.auth.login') }}">&nbsp;Login</a>
-                <a class="btn btn-secondary" href="{{ route('user.auth.register') }}">&nbsp;Register</a>
+                <a class="btn btn-success" href="{{ route('user.auth.register') }}">&nbsp;Registrieren</a>
 
             </p>
         </div>
