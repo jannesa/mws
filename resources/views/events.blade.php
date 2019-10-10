@@ -9,14 +9,14 @@
             <div class="row">
                 <div class="col-12">
                     <h1>Events</h1>
-                    <a class="btn btn-outline-primary waves-effect" href="{!! url('events_erstellen') !!}">&nbsp;Event erstellen</a>
+                    <a class="btn btn-primary waves-effect" href="{!! url('events_erstellen') !!}">&nbsp;Event erstellen</a>
                 </div>
                 @if(count($events)>0)
                     @foreach($events as $event )
                         <div class="col-12 mt-2 mb-2">
 
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header card-header-info">
                                    Event-Name: {{$event->titel}}
                                 </div>
                                 <div class="card-body">
@@ -33,15 +33,15 @@
                                     @endif
 
 
-                                    <a class="btn btn-outline-primary waves-effect" href="{{"songs/".$event->event_hash}}">Wünsche</a>
+                                    <a class="btn btn-primary waves-effect" href="{{"songs/".$event->event_hash}}">Wünsche</a>
 
-                                    <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-outline-info waves-effect">
+                                    <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-info waves-effect">
                                         Event-Link Kopieren
                                         <span style="display: none;" class="animation">in die Zwischenablage kopiert!</span>
                                     </button>
                                     <span style="position: absolute; top: -2000px; left: -2000px;" id="Z{{$event->event_hash}}">{{url("guest/".$event->event_hash)}}</span>
 
-                                    <button class="btn btn-outline-info waves-effect" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}">
+                                    <button class="btn btn-info waves-effect" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}">
                                         bearbeiten
                                     </button>
 
@@ -50,7 +50,7 @@
                                             <div class="col">
                                                 <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
                                             </div>
-                                        <button class="btn btn-outline-danger waves-effect" type="submit">Löschen</button>
+                                        <button class="btn btn-danger waves-effect" type="submit">Löschen</button>
                                     </form>
 
                                 </div>
@@ -100,7 +100,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-outline-success" type="submit">Änderung speichern</button>
+                                        <button class="btn btn-success" type="submit"><i class="fas fa-check"></i> Änderung speichern</button>
+
+                                        <button class="btn btn-primary btn-round">
+                                            <i class="material-icons">favorite</i> With Icon
+                                        </button>
+
                                     </form>
                                 </div>
                             </div>
