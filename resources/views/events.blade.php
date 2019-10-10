@@ -15,7 +15,7 @@
                     @foreach($events as $event )
                         <div class="col-12 mt-2 mb-2">
 
-                            <div class="card">
+                            <div class="card border-0 shadow">
                                 <div class="card-header">
                                     Event-Name: {{$event->titel}}
                                 </div>

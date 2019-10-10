@@ -24,17 +24,15 @@
         </div>
     @endif
 
-        <div class="container">
-
+        <div class="container pb-5">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3 class="mb-5 mt-5">User Daten</h3>
+                    <h1 class="mb-5 mt-5">Mein Konto</h1>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="card">
+                    <div class="card border-0 shadow">
 
                         <div class="card-body">
                             <h5 class="card-title">User ID: {{$data->id}}</h5>

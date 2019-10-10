@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
@@ -8,7 +8,16 @@
 //@import '/vendor/twbs/bootstrap/dist/css/bootstrap.min.css';
 
 
-.startpage-header {
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+
+body {
+
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.masthead {
     background: url("img/2NIGHTS_SchüHa-6163_sm.jpg");
     background-size: cover;
 }
+
+
