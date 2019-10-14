@@ -28,7 +28,7 @@ class guestController extends Controller
     public function addSong(Request $request)
     {
         $validate = false;
-        $wartezeit = 300;
+        $wartezeit = 300; //300 Sek. = 5 Min
         $anz_wuensche = 5;
         //Limit-Spam-System
         $session_counter = Session::get('counter');
@@ -72,10 +72,11 @@ class guestController extends Controller
 
                 //Handling mit Counter und Zeiten
                 if($time_difference >= $wartezeit){
-                    Session::put('counter', 0);
+                    Session::put('counter', 1);
                     Session::put('first_wish_time', date('H:i'));
                     $time_difference = 0;
                     $session_counter = 0;
+                    $validate = true;
                 }
                 else if($time_difference < $wartezeit && $session_counter >= $anz_wuensche){
                     $validate = false;
