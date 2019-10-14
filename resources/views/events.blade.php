@@ -32,14 +32,21 @@
                                         <p class="card-text">Spamfilter: {{"Limit"}}</p>
                                     @endif
 
+                                    <div class="text-hide">
+                                    {!! QrCode:: format('png')->generate(url("guest/".$event->event_hash), public_path('qrCodeImages/'.$event->event_hash.'.png'));!!}
+                                    </div>
 
-                                    <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}">Wünsche</a>
+                                    {!! QrCode::size(150) ->generate(url("guest/".$event->event_hash)); !!} <br>
+
+                                    <a class="btn btn-outline-dark" href={{'qrCodeImages/'.$event->event_hash.'.png'}} download>Download QR-Code</a>
 
                                     <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-primary">
                                         Event-Link Kopieren
                                         <span style="display: none;" class="animation">in die Zwischenablage kopiert!</span>
                                     </button>
                                     <span style="position: absolute; top: -2000px; left: -2000px;" id="Z{{$event->event_hash}}">{{url("guest/".$event->event_hash)}}</span>
+
+                                    <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}">Wünsche</a>
 
                                     <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}">
                                         bearbeiten

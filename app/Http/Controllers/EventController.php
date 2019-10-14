@@ -29,6 +29,7 @@ class EventController extends Controller
     public function showAllEvents(){
         $user = Auth::user();
         $events = Event::where('user_email',$user->email)->get();
+
         return view('events')->with('events', $events->reverse());
     }
 
@@ -79,9 +80,9 @@ class EventController extends Controller
         }
 
         if($request['status']){
-            $event_status = 'aktive';
+            $event_status = 'aktiv';
         }else{
-            $event_status = 'inaktive';
+            $event_status = 'inaktiv';
         }
 
         $event = Event::find($request['id']);
@@ -110,9 +111,6 @@ class EventController extends Controller
             ->where('song_interpret', $request->interpret)
             ->where('event_id', $request->eventid)
             ->delete();
-
-        //$songs = SongWunsch::where('event_id',$request->eventid)->get();
-        //return view('/songs',['songs' => $songs]);
 
         $event_daten = DB::table('event')->where('event_id', $request->eventid)->first();
         $event_hash = $event_daten -> event_hash;
