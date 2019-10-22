@@ -9,8 +9,44 @@
             <div class="row">
                 <div class="col-12">
                     <h1>Events</h1>
-                    <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
+
+                    @switch($user_abo_id)
+                        @case(1)
+
+                            @if($count_active >= 2 && $count_inactive >= 5)
+
+                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven oder inaktiven Events erreicht.
+                                Löschen Sie zuerst ein Event um ein neues erstellen zu können.</div>
+
+                            @else
+                            <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
+
+                        @endif
+
+                        @break
+                        @case(2)
+
+                        @if($count_active >= 10 && $count_inactive >= 20)
+
+                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven oder inaktiven Events erreicht.
+                                Löschen Sie zuerst ein Event um ein neues erstellen zu können.</div>
+                        @else
+                            <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
+                        @endif
+
+                        @break
+                        @case(3)
+
+                            <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
+
+                        @break
+                    @endswitch
+
+
                 </div>
+
+
+
                 @if(count($events)>0)
                     @foreach($events as $event )
                         <div class="col-12 mt-2 mb-2">

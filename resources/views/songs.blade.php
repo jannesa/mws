@@ -15,6 +15,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+
+            <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events') !!}">&nbsp;Zurück zu den Events</a>
             <br />
             <h3 align="center">Songwünsche für das Event {{$event_name}}</h3>
             <br />

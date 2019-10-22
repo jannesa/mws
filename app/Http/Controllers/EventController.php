@@ -23,13 +23,43 @@ class EventController extends Controller
     }
 
     public function openEventsPage(){
-        return view('events_erstellen');
+        $user = Auth::user();
+        $events = Event::where('user_email',$user->email)->get();
+        $count_active = 0;
+        $count_inactive = 0;
+        $user_abo_id = $user->abo_id;
+
+        foreach ($events as $event) {
+
+            if($event->status == "aktiv"){
+                $count_active ++;
+            } else {
+                $count_inactive ++;
+            }
+        }
+
+        return view('events_erstellen')->with('count_active',$count_active)->with('count_inactive',$count_inactive)->with('user_abo_id',$user_abo_id);
     }
 
     public function showAllEvents(){
         $user = Auth::user();
         $events = Event::where('user_email',$user->email)->get();
-        return view('events')->with('events', $events->reverse());
+
+        $user_abo_id = $user->abo_id;
+
+        $count_active = 0;
+        $count_inactive = 0;
+
+        foreach ($events as $event) {
+
+            if($event->status == "aktiv"){
+                $count_active ++;
+            } else {
+                $count_inactive ++;
+            }
+        }
+
+        return view('events')->with('events', $events->reverse())->with('count_active',$count_active)->with('count_inactive',$count_inactive)->with('user_abo_id',$user_abo_id);
     }
 
     public function addEvent(Request $request)
