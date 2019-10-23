@@ -3,54 +3,38 @@
 @section('title', 'Login')
 
 @section('content')
-
     <div class="my-5">
         <div class="container pb-5">
             <div class="row">
                 <div class="col-12">
                     <h1>Events</h1>
-
                     @switch($user_abo_id)
                         @case(1)
-
                             @if($count_active >= 2 && $count_inactive >= 5)
-
                             <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven oder inaktiven Events erreicht.
                                 Löschen Sie zuerst ein Event um ein neues erstellen zu können.</div>
-
                             @else
                             <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
-
                         @endif
-
                         @break
+
                         @case(2)
-
                         @if($count_active >= 10 && $count_inactive >= 20)
-
                             <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven oder inaktiven Events erreicht.
                                 Löschen Sie zuerst ein Event um ein neues erstellen zu können.</div>
                         @else
                             <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
                         @endif
-
                         @break
+
                         @case(3)
-
                             <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
-
                         @break
                     @endswitch
-
-
                 </div>
-
-
-
                 @if(count($events)>0)
                     @foreach($events as $event )
                         <div class="col-12 mt-2 mb-2">
-
                             <div class="card border-0 shadow">
                                 <div class="card-header">
                                     Event-Name: {{$event->titel}}
@@ -65,17 +49,13 @@
                                     @elseif($event->spamfilter ==2)
                                         <p class="card-text">Spamfilter: {{"Limit"}}</p>
                                     @endif
-
-
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a class="btn btn-secondary shadow" href="{{"songs/".$event->event_hash}}" data-toggle="tooltip" title="Musikwünsche für dieses Event anzeigen">Songwünsche</a>
-
                                         <button data-clipboard-action="copy" data-clipboard-target="#Z{{$event->event_hash}}" type="button" class="copyButton btn btn-primary shadow" data-toggle="tooltip" title="Link für Gäste kopieren">
                                             Event-Link
                                             <span style="display: none;" class="animation">in die Zwischenablage kopiert!</span>
                                         </button>
                                         <span style="position: absolute; top: -2000px; left: -2000px;" id="Z{{$event->event_hash}}">{{url("guest/".$event->event_hash)}}</span>
-
                                         <button class="btn btn-dark shadow" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}" data-toggle="tooltip" title="Event bearbeiten">
                                             bearbeiten
                                         </button>
@@ -99,15 +79,113 @@
                                                     <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
                                                 </div>
                                                 <br>
-                                                @if($event->status == 'aktiv')
-                                                    <div class="form-label-group">
-                                                        <input type="checkbox" name="status" value="aktiv" checked> Event aktiv
-                                                    </div>
-                                                @else
-                                                    <div class="form-label-group">
-                                                        <input type="checkbox" name="status" value="aktiv" > Event aktiv
-                                                    </div>
-                                                @endif
+                                                @switch($user_abo_id)
+                                                    @case(1)
+                                                    @if($count_active >= 2 && $count_inactive >= 5)
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an Events erreicht!
+                                                                Löschen Sie ein Event, um dieses aktivieren oder deaktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked disabled > Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an Events erreicht!
+                                                                Löschen Sie ein Event, um dieses aktivieren oder deaktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" disabled > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @elseif($count_active >= 2)
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven Events erreicht!</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked > Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven Events erreicht!
+                                                            Deaktivieren oder löschen Sie ein aktives Event, um dieses aktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" disabled > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @elseif($count_inactive >= 5)
+                                                        @if($event->status == 'aktiv')
+                                                             <div class="alert alert-warning">Sie haben ihre maximale Anzahl an inaktiven Events erreicht!</div>
+                                                             <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked disabled > Event aktiv
+                                                             </div>
+                                                        @else
+                                                             <div class="alert alert-warning">Sie haben ihre maximale Anzahl an inaktiven Events erreicht!</div>
+                                                             <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv"  > Event aktiv
+                                                             </div>
+                                                        @endif
+                                                    @else
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked> Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @endif
+                                                    @break
+
+                                                    @case(2)
+                                                    @if($count_active >= 10 && $count_inactive >= 20)
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an Events erreicht!
+                                                                Löschen Sie ein Event, um dieses aktivieren oder deaktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked disabled > Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an Events erreicht!
+                                                                Löschen Sie ein Event, um dieses aktivieren oder deaktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" disabled > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @elseif($count_active >= 10)
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven Events erreicht!</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked > Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven Events erreicht!
+                                                                Deaktivieren oder löschen Sie ein aktives Event, um dieses aktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" disabled > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @elseif($count_inactive >= 20)
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an inaktiven Events erreicht!</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked disabled > Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an inaktiven Events erreicht!</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv"  > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @else
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked> Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @endif
+                                                    @break
+                                                @endswitch
                                                 <br>
                                                 <div class="form-row">
                                                     <div class="col">
@@ -152,10 +230,7 @@
 
 @section('script')
     <script>
-
-
         $(document).ready(function(){
-
             var clipboard = new ClipboardJS('.copyButton');
 
             function setTooltip(btn, message) {
@@ -180,8 +255,5 @@
                 console.log(e);
             });
         });
-
-
     </script>
-
 @endsection
