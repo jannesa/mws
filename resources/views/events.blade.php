@@ -3,21 +3,41 @@
 @section('title', 'Login')
 
 @section('content')
-
-    <div class="album text-muted">
-        <div class="container">
+    <div class="my-5">
+        <div class="container pb-5">
             <div class="row">
                 <div class="col-12">
                     <h1>Events</h1>
-                    <a class="btn btn-primary" href="{!! url('events_erstellen') !!}">&nbsp;Event erstellen</a>
+                    @switch($user_abo_id)
+                        @case(1)
+                            @if($count_active >= 2 && $count_inactive >= 5)
+                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven oder inaktiven Events erreicht.
+                                Löschen Sie zuerst ein Event um ein neues erstellen zu können.</div>
+                            @else
+                            <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
+                        @endif
+                        @break
+
+                        @case(2)
+                        @if($count_active >= 10 && $count_inactive >= 20)
+                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven oder inaktiven Events erreicht.
+                                Löschen Sie zuerst ein Event um ein neues erstellen zu können.</div>
+                        @else
+                            <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
+                        @endif
+                        @break
+
+                        @case(3)
+                            <a class="btn btn-primary mb-3 mt-3 shadow" href="{!! url('events_erstellen') !!}">&nbsp;Neues Event erstellen</a>
+                        @break
+                    @endswitch
                 </div>
                 @if(count($events)>0)
                     @foreach($events as $event )
                         <div class="col-12 mt-2 mb-2">
-
-                            <div class="card">
+                            <div class="card border-0 shadow">
                                 <div class="card-header">
-                                   Event-Name: {{$event->titel}}
+                                    Event-Name: {{$event->titel}}
                                 </div>
                                 <div class="card-body">
 
@@ -48,67 +68,166 @@
 
                                     <a class="btn btn-secondary" href="{{"songs/".$event->event_hash}}">Wünsche</a>
 
-                                    <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}">
+                                    <button class="btn btn-dark shadow" type="button" data-toggle="collapse" data-target="#collapse{{$event->event_id}}" aria-expanded="false" aria-controls="{{$event->event_hash}}">
                                         bearbeiten
                                     </button>
 
-                                    <form method="post" action="{{ route('event.loeschen') }}" >
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <div class="col">
-                                                <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
-                                            </div>
-                                        <button class="confirm-delete btn btn-danger" type="button">Löschen</button>
-                                    </form>
-
                                 </div>
                                 <div class="card-footer collapse" id="collapse{{$event->event_id}}">
+                                    <div class="row">
+                                        <div class="col">
+                                            <form method="post" action="{{ route('event.bearbeiten') }}" >
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                    <form method="post" action="{{ route('event.bearbeiten') }}" >
-
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                                        <div class="form-row">
-                                            <div class="col-7">
-                                                <p class="card-text">Event-Name:</p>
-                                                <input type="text" class="form-control" name="titel" value="{{$event->titel}}" maxlength="191" required>
-                                            </div>
-                                            <div class="col">
-                                                <p class="card-text">Beschreibung: </p>
-                                                <textarea class="form-control" name="beschreibung" maxlength="500">{{$event->beschreibung}}</textarea>
-                                            </div>
-                                            <div class="col">
-                                                <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
-                                            </div>
-                                        </div>
-                                        <br>
-                                        @if($event->status == 'aktiv')
-                                            <div class="form-label-group">
-                                                <input type="checkbox" name="status" value="aktiv" checked> Event aktiv
-                                            </div>
-                                        @else
-                                            <div class="form-label-group">
-                                                <input type="checkbox" name="status" value="aktiv" > Event aktiv
-                                            </div>
-                                        @endif
-                                        <br>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class="form-check">
-                                                    <fieldset>
-                                                        <input type="radio" id="spamaus" name="spamfilter" value="0" @if($event->spamfilter ==0)checked @endif>
-                                                        <label for="spamaus"> Spamfilter aus</label>
-                                                        <br>
-                                                        <input type="radio" id="spamcaptcha" name="spamfilter" value="1" @if($event->spamfilter ==1) checked @endif>
-                                                        <label for="spamcaptcha"> Spamfilter Captcha</label>
-                                                        <br>
-                                                        <input type="radio" id="spamlimit" name="spamfilter" value="2" @if($event->spamfilter ==2) checked @endif>
-                                                        <label for="spamlimit"> Spamfilter Limit</label>
-                                                    </fieldset>
+                                                <div class="form-row">
+                                                    <div class="col-7">
+                                                        <p class="card-text">Event-Name:</p>
+                                                        <input type="text" class="form-control" name="titel" value="{{$event->titel}}" maxlength="191" required>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p class="card-text">Beschreibung: </p>
+                                                        <textarea class="form-control" name="beschreibung" maxlength="500">{{$event->beschreibung}}</textarea>
+                                                    </div>
+                                                    <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
                                                 </div>
-                                            </div>
+                                                <br>
+                                                @switch($user_abo_id)
+                                                    @case(1)
+                                                    @if($count_active >= 2 && $count_inactive >= 5)
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an Events erreicht!
+                                                                Löschen Sie ein Event, um dieses aktivieren oder deaktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked disabled > Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an Events erreicht!
+                                                                Löschen Sie ein Event, um dieses aktivieren oder deaktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" disabled > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @elseif($count_active >= 2)
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven Events erreicht!</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked > Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven Events erreicht!
+                                                            Deaktivieren oder löschen Sie ein aktives Event, um dieses aktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" disabled > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @elseif($count_inactive >= 5)
+                                                        @if($event->status == 'aktiv')
+                                                             <div class="alert alert-warning">Sie haben ihre maximale Anzahl an inaktiven Events erreicht!</div>
+                                                             <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked disabled > Event aktiv
+                                                             </div>
+                                                        @else
+                                                             <div class="alert alert-warning">Sie haben ihre maximale Anzahl an inaktiven Events erreicht!</div>
+                                                             <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv"  > Event aktiv
+                                                             </div>
+                                                        @endif
+                                                    @else
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked> Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @endif
+                                                    @break
+
+                                                    @case(2)
+                                                    @if($count_active >= 10 && $count_inactive >= 20)
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an Events erreicht!
+                                                                Löschen Sie ein Event, um dieses aktivieren oder deaktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked disabled > Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an Events erreicht!
+                                                                Löschen Sie ein Event, um dieses aktivieren oder deaktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" disabled > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @elseif($count_active >= 10)
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven Events erreicht!</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked > Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an aktiven Events erreicht!
+                                                                Deaktivieren oder löschen Sie ein aktives Event, um dieses aktivieren zu können.</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" disabled > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @elseif($count_inactive >= 20)
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an inaktiven Events erreicht!</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked disabled > Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="alert alert-warning">Sie haben ihre maximale Anzahl an inaktiven Events erreicht!</div>
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv"  > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @else
+                                                        @if($event->status == 'aktiv')
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" checked> Event aktiv
+                                                            </div>
+                                                        @else
+                                                            <div class="form-label-group">
+                                                                <input type="checkbox" name="status" value="aktiv" > Event aktiv
+                                                            </div>
+                                                        @endif
+                                                    @endif
+                                                    @break
+                                                @endswitch
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <div class="form-check">
+                                                            <fieldset>
+                                                                <input type="radio" id="spamaus" name="spamfilter" value="0" @if($event->spamfilter ==0)checked @endif>
+                                                                <label for="spamaus" data-toggle="tooltip" title="Unbegrenzte Wünsche möglich!"> Spamfilter aus</label>
+                                                                <br>
+                                                                <input type="radio" id="spamcaptcha" name="spamfilter" value="1" @if($event->spamfilter ==1) checked @endif>
+                                                                <label for="spamcaptcha" data-toggle="tooltip" title="Gäste müssen ein Captcha Code eingeben!"> Spamfilter Captcha</label>
+                                                                <br>
+                                                                <input type="radio" id="spamlimit" name="spamfilter" value="2" @if($event->spamfilter ==2) checked @endif>
+                                                                <label for="spamlimit" data-toggle="tooltip" title="Fünf Wünsche im Fünf-Minuten-Zyklus möglich"> Spamfilter Limit</label>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-dark shadow" type="submit">Änderung speichern</button>
+                                            </form>
                                         </div>
-                                        <button class="btn btn-dark" type="submit">Änderung speichern</button>
-                                    </form>
+                                        <div class="col-lg-2 align-self-lg-end">
+                                            <form method="post" action="{{ route('event.loeschen') }}" >
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <div class="col">
+                                                    <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
+                                                </div>
+                                                <button class="confirm-delete btn btn-danger shadow" type="button">Löschen</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -117,15 +236,12 @@
                     <div>Sie haben noch keine Events erstellt</div>
                 @endif
             </div>
-
         </div>
     </div>
 @endsection
 
 @section('script')
     <script>
-
-
         $(document).ready(function(){
 
             var clipboard = new ClipboardJS('.copyButton');
@@ -152,8 +268,6 @@
                 console.log(e);
             });
         });
-
-
     </script>
 
 @endsection

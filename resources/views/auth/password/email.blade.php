@@ -7,7 +7,7 @@
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card shadow-lg border-0">
                     <div class="card-header">{{ __('Link erhalten um das Passwort zurückzusetzen') }}</div>
 
                     <div class="card-body">
@@ -36,7 +36,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary shadow">
                                         {{ __('Link erhalten') }}
                                     </button>
                                 </div>

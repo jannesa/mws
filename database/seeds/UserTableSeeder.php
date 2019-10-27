@@ -21,7 +21,8 @@ class UserTableSeeder extends Seeder
                 'vorname' => 'Paul',
                 'nachname' => 'Test',
                 'email' => 'paul@test.de',
-                'password' => bcrypt('jannes')
+                'password' => bcrypt('jannes'),
+                'abo_id' => 1
             ]);
 
 
@@ -29,21 +30,24 @@ class UserTableSeeder extends Seeder
                 'vorname' => 'J',
                 'nachname' => 'A',
                 'email' => 'jannes@test.de',
-                'password' => bcrypt('12345678')
+                'password' => bcrypt('12345678'),
+                'abo_id' => 2
             ]);
 
             User::create([
                 'vorname' => 'katja',
                 'nachname' => 's',
                 'email' => 'kat@abc.de',
-                'password' => bcrypt('password')
+                'password' => bcrypt('password'),
+                'abo_id' => 3
             ]);
 
             User::create([
                 'vorname' => 'sabrina',
                 'nachname' => 'g',
                 'email' => 'sabrina@abc.de',
-                'password' => bcrypt('password')
+                'password' => bcrypt('password'),
+                'abo_id' => 1
             ]);
         }
     }

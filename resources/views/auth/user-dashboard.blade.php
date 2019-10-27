@@ -10,109 +10,96 @@
         </div>
     @endif
 
+    @if ($errors->has('vorname'))
+        <div class="alert alert-danger">
+              <strong>{{ $errors->first('vorname') }}</strong>
+        </div>
+    @elseif($errors->has('nachname'))
+        <div class="alert alert-danger">
+            <strong>{{ $errors->first('nachname') }}</strong>
+        </div>
+    @elseif($errors->has('email'))
+        <div class="alert alert-danger">
+            <strong>{{ $errors->first('email') }}</strong>
+        </div>
+    @endif
 
-
-    <div class="album text-muted">
-        <div class="container">
+        <div class="container pb-5">
             <div class="row">
-                <h1> @if( Auth::guard('user')->check())
-                        Willkommen
+                <div class="col-sm-12">
+                    <h1 class="mb-5 mt-5">Mein Konto</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 pb-5">
+                    <div class="card border-0 shadow ">
 
-                        {{{ Auth::user()->vorname }}}
+                        <div class="card-body">
+                            <h5 class="card-title">User ID: {{$data->id}}</h5>
+                            <p class="card-text">Name: {{$data->vorname}} {{$data->nachname}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">E-mail: {{$data->email}}</li>
+                            <li class="list-group-item">Registrierungsdatum: {{$data->created_at}}</li>
+                            <li class="list-group-item">Abo: {{$abo_type}}</li>
+                        </ul>
+                        <div class="card-body">
+                            <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse{{$data->id}}" aria-expanded="false" aria-controls="{{$data->id}}">
+                                bearbeiten
+                            </button>
 
-                    @endif
-                </h1>
+                        </div>
+                        <div class="card-footer collapse" id="collapse{{$data->id}}">
+                            <form action="{{ route("auth.user.edit")}}" method="POST">
+                                @csrf
+
+                                <input type="hidden" name="user_id" value="{{$data->id}}" >
+
+                                <div class="form-group">
+                                    <label for="">Vorname</label>
+                                    <input type="text" name="vorname" class="form-control" value="{{$data->vorname}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Nachname</label>
+                                    <input type="text" name="nachname" class="form-control" value="{{$data->nachname}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Email</label>
+                                    <input type="email" name="email" class="form-control" value="{{$data->email}}">
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="alert alert-info" role="alert">
+                                            <strong> Upgrade auf Pro oder Premium ? </strong>
+                                        </div>
+                                        <div class="form-check">
+                                            <fieldset>
+                                                <input type="radio" id="free" name="abotype" value="1" @if($abo_type == 'Free')checked @endif>
+                                                <label for="free"> Free </label>
+                                                <br>
+                                                <input type="radio" id="pro" name="abotype" value="2" @if($abo_type == 'Pro') checked @endif>
+                                                <label for="pro"> Pro </label>
+                                                <br>
+                                                <input type="radio" id="premium" name="abotype" value="3" @if($abo_type == 'Premium') checked @endif>
+                                                <label for="premium"> Premium </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <br />
-            <h3 align="center">Songwünsche</h3>
-            <br />
-            <table id="myTable2" class="table table-hover table-striped table-bordered">
-                <tr>
-                    <th onclick="sortTable(0)">Songtitel</th>
-                    <th onclick="sortTable(1)">Songinterpret</th>
-                    <th onclick="sortTable(2)">Ranking</th>
-                    <th onclick="sortTable(3)">Uhrzeit</th>
-                    <th onclick="sortTable(4)">gespielt</th>
-                </tr>
-
-                @foreach($songs as $song)
-                    <tr>
-
-                        <td>{{$song['song_titel']}}</td>
-                        <td>{{$song['song_interpret']}}</td>
-                        <td>{{$song['ranking']}}</td>
-                        <td>{{$song['uhrzeit']}}</td>
-                        <td>{{$song['gespielt']}}</td>
-
-                    </tr>
-                @endforeach
-
-            </table>
-        </div>
-    </div>
 
 
 @endsection
-
-<script>
-    function sortTable(n) {
-        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("myTable2");
-        switching = true;
-        // Set the sorting direction to ascending:
-        dir = "asc";
-        /* Make a loop that will continue until
-        no switching has been done: */
-        while (switching) {
-            // Start by saying: no switching is done:
-            switching = false;
-            rows = table.rows;
-            /* Loop through all table rows (except the
-            first, which contains table headers): */
-            for (i = 1; i < (rows.length - 1); i++) {
-                // Start by saying there should be no switching:
-                shouldSwitch = false;
-                /* Get the two elements you want to compare,
-                one from current row and one from the next: */
-                x = rows[i].getElementsByTagName("TD")[n];
-                y = rows[i + 1].getElementsByTagName("TD")[n];
-                /* Check if the two rows should switch place,
-                based on the direction, asc or desc: */
-                if (dir == "asc") {
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        // If so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (dir == "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        // If so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-            }
-            if (shouldSwitch) {
-                /* If a switch has been marked, make the switch
-                and mark that a switch has been done: */
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-                // Each time a switch is done, increase this count by 1:
-                switchcount ++;
-            } else {
-                /* If no switching has been done AND the direction is "asc",
-                set the direction to "desc" and run the while loop again. */
-                if (switchcount == 0 && dir == "asc") {
-                    dir = "desc";
-                    switching = true;
-                }
-            }
-        }
-    }
-</script>
 
