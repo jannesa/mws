@@ -33,7 +33,6 @@
                             <th scope="col">E-Mail</th>
                             <th scope="col">Abo-ID</th>
                             <th scope="col">Registriert am:</th>
-                            <th scope="col">Anzahl Events</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
                         </thead>
@@ -47,7 +46,6 @@
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->abo_id}}</td>
                                 <td>{{$user->created_at}}</td>
-                                <td>{{$user->anzahl_events}}</td>
                                 <td>
                                     <form method="POST" action="{{ route('admin.delete.user') }}">
                                         @csrf
