@@ -94,6 +94,8 @@ class EventController extends Controller
         return redirect('/events');
     }
     public function delete(Request $request){
+        $qrDelete = public_path().'/'.'qrCodeImages/'.$request['hash'].'.png';
+        unlink($qrDelete);
         Event::find($request['id']) -> delete();
         return redirect('/events');
     }

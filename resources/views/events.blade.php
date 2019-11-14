@@ -223,6 +223,7 @@
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <div class="col">
                                                     <input type="hidden" class="form-control" name="id" value="{{$event->event_id}}">
+                                                    <input type="hidden" class="form-control" name="hash" value="{{$event->event_hash}}">
                                                 </div>
                                                 <button class="confirm-delete btn btn-danger shadow" type="button">Löschen</button>
                                             </form>

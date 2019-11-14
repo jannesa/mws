@@ -12,3 +12,4 @@ yarn-error.log
 /.idea/php.xml
 .env
 composer.lock
+/public/qrCodeImages/*.png
